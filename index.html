@@ -1,0 +1,792 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>juAInot — IA Aplicada a Resultados Empresariales</title>
+<meta name="description" content="Convertimos la Inteligencia Artificial en resultados empresariales reales. Diagnóstico gratuito. Soluciones a medida. Retorno medible.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ── RESET ──────────────────────────────────────────────────────────────── */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; overflow-x: hidden; }
+body {
+  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  background: #0B0F1A;
+  color: #E8EDF5;
+  overflow-x: hidden;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ── TOKENS ─────────────────────────────────────────────────────────────── */
+:root {
+  --navy:    #0B0F1A;
+  --navy2:   #111827;
+  --navy3:   #1A2236;
+  --blue:    #2E86AB;
+  --blue2:   #3D9DC4;
+  --teal:    #1B998B;
+  --white:   #FFFFFF;
+  --off:     #F1F5F9;
+  --text:    #E8EDF5;
+  --muted:   #7C8BA1;
+  --border:  rgba(255,255,255,0.07);
+  --r:       12px;
+  --r2:      20px;
+}
+
+
+/* ── LOGO TEXT ── */
+.logo-text {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: #FFFFFF;
+  letter-spacing: -0.04em;
+  line-height: 1;
+}
+.logo-ai {
+  background: linear-gradient(135deg, #2E86AB, #00C6FF);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+/* ── NAV ─────────────────────────────────────────────────────────────────── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  height: 80px;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 5vw;
+  background: rgba(11,15,26,0.92);
+  backdrop-filter: blur(20px);
+  border-bottom: 1px solid var(--border);
+}
+
+.nav-logo {
+  display: flex; align-items: center;
+  text-decoration: none;
+  padding: 4px 8px;
+}
+.nav-logo img { height: 68px; width: auto; display: block; mix-blend-mode: screen; }
+/* ── HERO ─────────────────────────────────────────────────────────────────── */
+#hero {
+  min-height: 100vh;
+  display: flex; align-items: center;
+  padding: 116px 5vw 80px;
+  position: relative;
+  background:
+    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(46,134,171,0.12) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(27,153,139,0.08) 0%, transparent 50%),
+    var(--navy);
+}
+
+.hero-inner { max-width: 720px; }
+
+.hero-chip {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(46,134,171,0.12);
+  border: 1px solid rgba(46,134,171,0.25);
+  color: var(--blue2); padding: 6px 14px;
+  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+  margin-bottom: 2rem;
+  opacity: 0; animation: rise 0.6s 0.1s ease forwards;
+}
+.hero-chip-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--blue); animation: blink 2s infinite;
+}
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.hero-h1 {
+  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.04em;
+  color: var(--white);
+  margin-bottom: 1.5rem;
+  opacity: 0; animation: rise 0.6s 0.2s ease forwards;
+}
+.hero-h1 .blue { color: var(--blue2); }
+.hero-h1 .teal { color: var(--teal); }
+
+.hero-sub {
+  font-size: 1.1rem; font-weight: 400; color: var(--muted);
+  line-height: 1.75; max-width: 560px;
+  margin-bottom: 2.5rem;
+  opacity: 0; animation: rise 0.6s 0.3s ease forwards;
+}
+
+.hero-btns {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  opacity: 0; animation: rise 0.6s 0.4s ease forwards;
+}
+
+.btn-primary {
+  background: var(--blue); color: var(--white);
+  padding: 14px 28px; border-radius: var(--r);
+  text-decoration: none; font-weight: 600; font-size: 0.95rem;
+  display: inline-flex; align-items: center; gap: 8px;
+  transition: all 0.2s;
+}
+.btn-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,134,171,0.3); }
+
+.btn-ghost {
+  border: 1px solid var(--border); color: var(--muted);
+  padding: 14px 28px; border-radius: var(--r);
+  text-decoration: none; font-weight: 500; font-size: 0.95rem;
+  transition: all 0.2s;
+}
+.btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--white); }
+
+.hero-stats {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px; margin-top: 5rem;
+  border-top: 1px solid var(--border); padding-top: 2.5rem;
+  opacity: 0; animation: rise 0.6s 0.5s ease forwards;
+}
+.stat { text-align: left; }
+.stat-n {
+  font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;
+  color: var(--white); line-height: 1.1; margin-bottom: 4px;
+}
+.stat-n span { color: var(--blue); }
+.stat-l { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
+
+@keyframes rise {
+  from { opacity:0; transform: translateY(20px); }
+  to   { opacity:1; transform: translateY(0); }
+}
+
+/* ── SECTION BASE ──────────────────────────────────────────────────────────── */
+.section { padding: 100px 5vw; }
+.section-dark { background: var(--navy2); }
+.section-mid  { background: var(--navy3); }
+.section-light { background: var(--navy); }
+
+.eyebrow {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.12em; text-transform: uppercase;
+  color: var(--blue); margin-bottom: 16px;
+}
+
+.section-h2 {
+  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-weight: 800; letter-spacing: -0.03em;
+  color: var(--white); line-height: 1.2;
+  margin-bottom: 16px;
+}
+
+.section-lead {
+  font-size: 1rem; color: var(--muted);
+  max-width: 540px; line-height: 1.75;
+  margin-bottom: 60px;
+}
+
+/* ── PROBLEMA ──────────────────────────────────────────────────────────────── */
+#problema { padding: 100px 5vw; background: var(--navy2); }
+
+.problema-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5vw; align-items: start;
+}
+
+.problema-qs {
+  display: flex; flex-direction: column; gap: 12px;
+  margin-top: 8px;
+}
+
+.problema-q {
+  display: flex; align-items: flex-start; gap: 14px;
+  padding: 16px 20px;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  font-size: 0.9rem; color: var(--muted);
+  transition: all 0.2s;
+}
+.problema-q:hover { border-color: rgba(46,134,171,0.3); color: var(--text); }
+.problema-q-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
+
+.problema-close {
+  margin-top: 32px; padding: 20px 24px;
+  background: linear-gradient(135deg, rgba(46,134,171,0.12), rgba(27,153,139,0.08));
+  border: 1px solid rgba(46,134,171,0.2);
+  border-radius: var(--r2);
+  font-size: 1rem; font-weight: 600; color: var(--white);
+  line-height: 1.6;
+}
+.problema-close span { color: var(--blue2); }
+
+/* ── SOLUCIÓN ──────────────────────────────────────────────────────────────── */
+#solucion { padding: 100px 5vw; background: var(--navy3); }
+
+.steps-grid {
+  display: grid; grid-template-columns: repeat(4,1fr);
+  gap: 1px;
+  background: var(--border);
+  border-radius: var(--r2); overflow: hidden;
+}
+
+.step {
+  background: var(--navy2);
+  padding: 32px 24px;
+  position: relative;
+  transition: background 0.2s;
+}
+.step:hover { background: #151d2e; }
+
+.step-bar {
+  height: 2px; width: 100%;
+  margin-bottom: 28px;
+}
+.step:nth-child(1) .step-bar { background: var(--blue); }
+.step:nth-child(2) .step-bar { background: var(--teal); }
+.step:nth-child(3) .step-bar { background: #7C6FE0; }
+.step:nth-child(4) .step-bar { background: #2D6A4F; }
+
+.step-num {
+  font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em;
+  color: rgba(255,255,255,0.06); line-height: 1;
+  margin-bottom: 12px;
+}
+.step-name {
+  font-size: 1.05rem; font-weight: 700; color: var(--white);
+  margin-bottom: 8px;
+}
+.step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
+
+/* ── LÍNEAS ──────────────────────────────────────────────────────────────────── */
+#lineas { padding: 100px 5vw; background: var(--navy); }
+
+.lineas-grid {
+  display: grid; grid-template-columns: repeat(2,1fr);
+  gap: 16px;
+}
+
+.linea {
+  padding: 36px 32px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--r2);
+  transition: all 0.25s;
+  position: relative; overflow: hidden;
+}
+.linea::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+}
+.linea:nth-child(1)::before { background: var(--blue); }
+.linea:nth-child(2)::before { background: var(--teal); }
+.linea:nth-child(3)::before { background: #7C6FE0; }
+.linea:nth-child(4)::before { background: #2D6A4F; }
+.linea:hover {
+  border-color: rgba(255,255,255,0.12);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+}
+
+.linea-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
+.linea-name {
+  font-size: 1.15rem; font-weight: 700; color: var(--white);
+  margin-bottom: 4px;
+}
+.linea-name-tag { font-weight: 400; color: var(--muted); }
+.linea-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-top: 10px; }
+
+/* ── ASSESSMENT CTA ──────────────────────────────────────────────────────────── */
+#assessment {
+  padding: 120px 5vw;
+  background: var(--navy2);
+  text-align: center;
+  position: relative;
+}
+#assessment::before {
+  content: '';
+  position: absolute; inset: 0;
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(46,134,171,0.1), transparent),
+    radial-gradient(ellipse 40% 40% at 50% 100%, rgba(27,153,139,0.08), transparent);
+  pointer-events: none;
+}
+
+.assessment-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
+
+.assessment-badge {
+  display: inline-block;
+  background: rgba(46,134,171,0.12);
+  border: 1px solid rgba(46,134,171,0.25);
+  color: var(--blue2); padding: 7px 18px;
+  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
+  margin-bottom: 28px;
+}
+
+#assessment .section-h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
+
+#assessment .section-lead { margin: 0 auto 32px; text-align: center; }
+
+.assessment-pills {
+  display: flex; justify-content: center; gap: 10px;
+  flex-wrap: wrap; margin-bottom: 40px;
+}
+.pill {
+  display: flex; align-items: center; gap: 6px;
+  padding: 8px 16px;
+  background: rgba(255,255,255,0.04);
+  border: 1px solid var(--border);
+  border-radius: 100px;
+  font-size: 0.8rem; color: var(--muted); font-weight: 500;
+}
+.pill::before { content: '✓'; color: var(--teal); font-weight: 700; }
+
+/* ── CONTACTO ──────────────────────────────────────────────────────────────── */
+#contacto { padding: 100px 5vw; background: var(--navy3); }
+
+.contacto-grid {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 5vw; align-items: start;
+}
+
+.contact-methods { display: flex; flex-direction: column; gap: 12px; }
+
+.contact-method {
+  display: flex; align-items: center; gap: 16px;
+  padding: 18px 20px;
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  text-decoration: none; color: var(--text);
+  transition: all 0.2s;
+}
+.contact-method:hover { border-color: rgba(46,134,171,0.3); transform: translateX(4px); }
+.contact-icon {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: rgba(46,134,171,0.12);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem; flex-shrink: 0;
+}
+.contact-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 2px; }
+.contact-val { font-size: 0.9rem; font-weight: 600; }
+
+/* FORM */
+.contact-form { display: flex; flex-direction: column; gap: 14px; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.form-group { display: flex; flex-direction: column; gap: 6px; }
+.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
+.form-group input,
+.form-group select,
+.form-group textarea {
+  background: var(--navy2);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  padding: 11px 14px;
+  color: var(--text);
+  font-family: inherit; font-size: 0.875rem;
+  outline: none; transition: border-color 0.2s;
+}
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus { border-color: var(--blue); }
+.form-group select option { background: var(--navy2); }
+.form-group textarea { resize: vertical; min-height: 110px; }
+.form-submit {
+  background: var(--blue); color: var(--white);
+  padding: 13px 28px; border-radius: var(--r);
+  border: none; font-family: inherit;
+  font-size: 0.95rem; font-weight: 600;
+  cursor: pointer; transition: all 0.2s;
+  align-self: flex-start;
+}
+.form-submit:hover { background: var(--blue2); transform: translateY(-2px); }
+
+/* ── FOOTER ──────────────────────────────────────────────────────────────── */
+footer {
+  background: var(--navy);
+  border-top: 1px solid var(--border);
+  padding: 60px 5vw 40px;
+}
+.footer-top {
+  display: flex; justify-content: space-between;
+  align-items: flex-start; flex-wrap: wrap; gap: 3rem;
+  padding-bottom: 40px;
+  border-bottom: 1px solid var(--border);
+  margin-bottom: 32px;
+}
+.footer-tagline { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+.footer-cols { display: flex; gap: 4rem; flex-wrap: wrap; }
+.footer-col h4 {
+  font-size: 0.72rem; font-weight: 700;
+  letter-spacing: 0.1em; text-transform: uppercase;
+  color: var(--white); margin-bottom: 16px;
+}
+.footer-col a {
+  display: block; color: var(--muted);
+  text-decoration: none; font-size: 0.875rem;
+  margin-bottom: 8px; transition: color 0.2s;
+}
+.footer-col a:hover { color: var(--white); }
+.footer-bottom {
+  display: flex; justify-content: space-between;
+  align-items: center; flex-wrap: wrap; gap: 12px;
+}
+.footer-legal { font-size: 0.78rem; color: var(--muted); }
+.footer-tagline-bottom {
+  font-size: 0.78rem; color: var(--muted); font-style: italic;
+}
+
+/* ── WA FLOAT ──────────────────────────────────────────────────────────────── */
+.wa-btn {
+  position: fixed; bottom: 24px; right: 24px; z-index: 999;
+  width: 52px; height: 52px; border-radius: 50%;
+  background: #25D366; color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; font-size: 1.4rem;
+  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+.wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
+
+/* ── REVEAL ──────────────────────────────────────────────────────────────── */
+.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.on { opacity: 1; transform: translateY(0); }
+
+/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
+@media (max-width: 900px) {
+  .steps-grid { grid-template-columns: repeat(2,1fr); gap: 1px; }
+  .step { padding: 20px 16px; }
+  .step-num { font-size: 1.8rem; margin-bottom: 8px; }
+  .step-name { font-size: 0.95rem; }
+  .step-desc { font-size: 0.8rem; }
+  .lineas-grid { grid-template-columns: 1fr; }
+  .problema-grid, .contacto-grid { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .hero-stats { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
+  .hero-btns { flex-direction: column; }
+  .form-row { grid-template-columns: 1fr; }
+}
+@media (max-width: 600px) {
+  .steps-grid { grid-template-columns: 1fr; }
+  nav { padding: 0 20px; }
+  .section, #problema, #solucion, #lineas, #assessment, #contacto { padding: 70px 5vw; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#hero" class="nav-logo">
+        <img src="data:image/png;base64,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" alt="juAInot" style="height:40px">
+      </a>
+  <ul class="nav-links">
+    <li><a href="#problema">El Problema</a></li>
+    <li><a href="#lineas">Servicios</a></li>
+    <li><a href="#assessment">Assessment</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+  <a href="#assessment" class="nav-cta">Assessment Gratis</a>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <div class="hero-chip">
+      <div class="hero-chip-dot"></div>
+      IA Aplicada a Resultados Empresariales
+    </div>
+    <h1 class="hero-h1">
+      No vendemos tecnología.<br>
+      Resolvemos <span class="blue">problemas</span><br>
+      de <span class="teal">negocio.</span>
+    </h1>
+    <p class="hero-sub">
+      Identificamos dónde la IA genera valor real dentro de su organización, ejecutamos la solución y la mantenemos funcionando. El resultado: procesos más eficientes y costos reducidos.
+    </p>
+    <div class="hero-btns">
+      <a href="#assessment" class="btn-primary">Quiero mi Assessment Gratis →</a>
+      <a href="#solucion" class="btn-ghost">¿Cómo funciona?</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <div class="stat-n"><span>$</span>0</div>
+        <div class="stat-l">Costo del Assessment</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">4</div>
+        <div class="stat-l">Líneas de soluciones IA</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">24<span>/7</span></div>
+        <div class="stat-l">Soluciones que no duermen</div>
+      </div>
+      <div class="stat">
+        <div class="stat-n">ROI</div>
+        <div class="stat-l">Precio basado en retorno</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMA -->
+<section id="problema">
+  <div class="problema-grid reveal">
+    <div>
+      <p class="eyebrow">El Problema</p>
+      <h2 class="section-h2">Todas las empresas saben que la IA cambiará todo.</h2>
+      <p class="section-lead" style="margin-bottom:0">El problema es que pocas saben cómo actuar — y esa parálisis les cuesta dinero todos los días.</p>
+      <div class="problema-close" style="margin-top:28px">
+        <span>juAInot</span> cierra esa brecha — con metodología, tecnología y el mejor equipo de desarrollo IA de la región.
+      </div>
+    </div>
+    <div class="problema-qs">
+      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Dónde aplico la IA dentro de mi organización?</div>
+      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Qué procesos puedo automatizar sin arriesgar la operación?</div>
+      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Cómo garantizo un retorno real de la inversión?</div>
+      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Por dónde empiezo sin perder tiempo ni dinero?</div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUCIÓN -->
+<section id="solucion">
+  <div class="reveal">
+    <p class="eyebrow">Nuestra Metodología</p>
+    <h2 class="section-h2">Cuatro pasos. Resultados reales.</h2>
+    <p class="section-lead">Un proceso probado que va de la identificación del problema hasta la solución funcionando.</p>
+  </div>
+  <div class="steps-grid reveal">
+    <div class="step">
+      <div class="step-bar"></div>
+      <div class="step-num">01</div>
+      <div class="step-name">Analizamos</div>
+      <div class="step-desc">Diagnóstico integral y gratuito de procesos, puestos y flujos de trabajo.</div>
+    </div>
+    <div class="step">
+      <div class="step-bar"></div>
+      <div class="step-num">02</div>
+      <div class="step-name">Identificamos</div>
+      <div class="step-desc">Oportunidades concretas de automatización con ROI calculado para su empresa.</div>
+    </div>
+    <div class="step">
+      <div class="step-bar"></div>
+      <div class="step-num">03</div>
+      <div class="step-name">Ejecutamos</div>
+      <div class="step-desc">Soluciones de IA integradas a los sistemas existentes. Sin cambiar su infraestructura.</div>
+    </div>
+    <div class="step">
+      <div class="step-bar"></div>
+      <div class="step-num">04</div>
+      <div class="step-name">Escalamos</div>
+      <div class="step-desc">Soporte continuo para crecer sin incrementar proporcionalmente los costos.</div>
+    </div>
+  </div>
+</section>
+
+<!-- LÍNEAS -->
+<section id="lineas">
+  <div class="reveal">
+    <p class="eyebrow">Nuestros Servicios</p>
+    <h2 class="section-h2">4 líneas de soluciones IA</h2>
+    <p class="section-lead">Cada línea está diseñada para resolver un problema específico con resultados medibles.</p>
+  </div>
+  <div class="lineas-grid reveal">
+    <div class="linea">
+      <span class="linea-icon">🔍</span>
+      <div class="linea-name">juAInot <span class="linea-name-tag">Assessment</span></div>
+      <p class="linea-desc">Diagnóstico gratuito e integral. Visitamos su empresa, analizamos cada puesto de trabajo con IA y entregamos un mapa de oportunidades con el ahorro proyectado. Sin costo. Sin compromiso.</p>
+    </div>
+    <div class="linea">
+      <span class="linea-icon">💬</span>
+      <div class="linea-name">juAInot <span class="linea-name-tag">Customer Experience</span></div>
+      <p class="linea-desc">Agentes inteligentes omnicanal que atienden, califican y convierten clientes las 24 horas. Servicio al cliente, gestión de citas, soporte técnico y seguimiento comercial — sin contratar personal adicional.</p>
+    </div>
+    <div class="linea">
+      <span class="linea-icon">⚙️</span>
+      <div class="linea-name">juAInot <span class="linea-name-tag">Operations</span></div>
+      <p class="linea-desc">Automatización de procesos internos: procesamiento de documentos, flujos de aprobación, reportería automática y gestión administrativa. Su equipo deja de hacer tareas repetitivas.</p>
+    </div>
+    <div class="linea">
+      <span class="linea-icon">👥</span>
+      <div class="linea-name">juAInot <span class="linea-name-tag">Workforce</span></div>
+      <p class="linea-desc">Herramientas para entender cómo trabaja su organización: cuellos de botella, productividad real y nuevas oportunidades de mejora continua.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ASSESSMENT CTA -->
+<section id="assessment">
+  <div class="assessment-inner reveal">
+    <div class="assessment-badge">🎯 Diagnóstico Gratuito — Sin Compromiso</div>
+    <h2 class="section-h2">¿Cuánto está perdiendo su empresa hoy?</h2>
+    <p class="section-lead">Lo descubrimos juntos. Visitamos su empresa, analizamos cada proceso y en días recibe su diagnóstico completo con el ahorro proyectado.</p>
+    <div class="assessment-pills">
+      <div class="pill">Diagnóstico completo</div>
+      <div class="pill">Ahorro calculado</div>
+      <div class="pill">Hoja de ruta lista</div>
+      <div class="pill">Sin compromiso</div>
+    </div>
+    <a href="#contacto" class="btn-primary" style="font-size:1rem;padding:16px 36px;">
+      Solicitar Assessment Gratuito →
+    </a>
+  </div>
+</section>
+
+<!-- CONTACTO -->
+<section id="contacto">
+  <div class="reveal">
+    <p class="eyebrow">Hablemos</p>
+    <h2 class="section-h2">¿Por qué no hacerlo ya?</h2>
+  </div>
+  <div class="contacto-grid">
+    <div class="contact-methods reveal">
+      <a href="mailto:Rolando@juainot.com" class="contact-method">
+        <div class="contact-icon">✉️</div>
+        <div>
+          <div class="contact-label">Correo electrónico</div>
+          <div class="contact-val">Rolando@juainot.com</div>
+        </div>
+      </a>
+      <a href="https://wa.me/50688754240" target="_blank" class="contact-method">
+        <div class="contact-icon">💬</div>
+        <div>
+          <div class="contact-label">WhatsApp</div>
+          <div class="contact-val">+506 8875 4240</div>
+        </div>
+      </a>
+      <a href="https://calendly.com/juainot" target="_blank" class="contact-method">
+        <div class="contact-icon">📅</div>
+        <div>
+          <div class="contact-label">Agendar una llamada</div>
+          <div class="contact-val">Escoja su horario</div>
+        </div>
+      </a>
+      <div class="contact-method" style="cursor:default">
+        <div class="contact-icon">📍</div>
+        <div>
+          <div class="contact-label">Ubicación</div>
+          <div class="contact-val">Costa Rica · Latinoamérica</div>
+          <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">3-102-937092 SRL</div>
+        </div>
+      </div>
+    </div>
+    <div class="reveal">
+      <form class="contact-form" onsubmit="handleForm(event)">
+        <div class="form-row">
+          <div class="form-group">
+            <label>Nombre *</label>
+            <input type="text" required placeholder="Juan Pérez">
+          </div>
+          <div class="form-group">
+            <label>Empresa *</label>
+            <input type="text" required placeholder="Mi Empresa S.A.">
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label>Email *</label>
+            <input type="email" required placeholder="juan@empresa.com">
+          </div>
+          <div class="form-group">
+            <label>WhatsApp</label>
+            <input type="tel" placeholder="+506 0000 0000">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>¿Qué le interesa?</label>
+          <select>
+            <option value="">Seleccionar...</option>
+            <option>Assessment gratuito</option>
+            <option>juAInot Customer Experience</option>
+            <option>juAInot Operations</option>
+            <option>juAInot Workforce</option>
+            <option>Información general</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>Mensaje</label>
+          <textarea placeholder="Cuéntenos sobre su empresa y lo que le gustaría mejorar..."></textarea>
+        </div>
+        <button type="submit" class="form-submit">Enviar mensaje →</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-top">
+    <div>
+      <a href="#hero" class="nav-logo">
+        <img src="data:image/png;base64,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" alt="juAInot" style="height:40px">
+      </a>
+      <p class="footer-tagline">IA Aplicada a Resultados Empresariales</p>
+    </div>
+    <div class="footer-cols">
+      <div class="footer-col">
+        <h4>Servicios</h4>
+        <a href="#lineas">Assessment</a>
+        <a href="#lineas">Customer Experience</a>
+        <a href="#lineas">Operations</a>
+        <a href="#lineas">Workforce</a>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <a href="#solucion">Cómo funciona</a>
+        <a href="#assessment">Assessment gratis</a>
+        <a href="#contacto">Contacto</a>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <a href="mailto:Rolando@juainot.com">Rolando@juainot.com</a>
+        <a href="https://wa.me/50688754240">+506 8875 4240</a>
+        <a href="https://juainot.com">juainot.com</a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-legal">© 2025 juAInot · 3-102-937092 SRL · Costa Rica</p>
+    <p class="footer-tagline-bottom">¿Por qué no hacerlo ya?</p>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<a href="https://wa.me/50688754240" target="_blank" class="wa-btn" title="WhatsApp">💬</a>
+
+<script>
+// Scroll reveal
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('on');
+      const kids = Array.from(e.target.children);
+      kids.forEach((k, i) => k.style.transitionDelay = (i * 0.07) + 's');
+    }
+  });
+}, { threshold: 0.08 });
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+
+// Form
+function handleForm(e) {
+  e.preventDefault();
+  const btn = e.target.querySelector('.form-submit');
+  btn.textContent = 'Enviando...';
+  setTimeout(() => {
+    btn.textContent = '✓ ¡Mensaje enviado!';
+    btn.style.background = '#1B998B';
+    e.target.reset();
+    setTimeout(() => { btn.textContent = 'Enviar mensaje →'; btn.style.background = ''; }, 3000);
+  }, 1200);
+}
+
+// Active nav
+const sections = document.querySelectorAll('section[id]');
+const links = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  links.forEach(a => { a.style.color = a.getAttribute('href') === '#'+cur ? 'white' : ''; });
+}, { passive: true });
+</script>
+</body>
+</html>
