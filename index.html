@@ -1,792 +1,791 @@
 <!DOCTYPE html>
-<html lang="es">
+<html>
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>juAInot — IA Aplicada a Resultados Empresariales</title>
-<meta name="description" content="Convertimos la Inteligencia Artificial en resultados empresariales reales. Diagnóstico gratuito. Soluciones a medida. Retorno medible.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-/* ── RESET ──────────────────────────────────────────────────────────────── */
-*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; overflow-x: hidden; }
-body {
-  font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
-  background: #0B0F1A;
-  color: #E8EDF5;
-  overflow-x: hidden;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-}
-
-/* ── TOKENS ─────────────────────────────────────────────────────────────── */
-:root {
-  --navy:    #0B0F1A;
-  --navy2:   #111827;
-  --navy3:   #1A2236;
-  --blue:    #2E86AB;
-  --blue2:   #3D9DC4;
-  --teal:    #1B998B;
-  --white:   #FFFFFF;
-  --off:     #F1F5F9;
-  --text:    #E8EDF5;
-  --muted:   #7C8BA1;
-  --border:  rgba(255,255,255,0.07);
-  --r:       12px;
-  --r2:      20px;
-}
-
-
-/* ── LOGO TEXT ── */
-.logo-text {
-  font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 1.5rem;
-  font-weight: 800;
-  color: #FFFFFF;
-  letter-spacing: -0.04em;
-  line-height: 1;
-}
-.logo-ai {
-  background: linear-gradient(135deg, #2E86AB, #00C6FF);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-/* ── NAV ─────────────────────────────────────────────────────────────────── */
-nav {
-  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
-  height: 80px;
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 5vw;
-  background: rgba(11,15,26,0.92);
-  backdrop-filter: blur(20px);
-  border-bottom: 1px solid var(--border);
-}
-
-.nav-logo {
-  display: flex; align-items: center;
-  text-decoration: none;
-  padding: 4px 8px;
-}
-.nav-logo img { height: 68px; width: auto; display: block; mix-blend-mode: screen; }
-/* ── HERO ─────────────────────────────────────────────────────────────────── */
-#hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 116px 5vw 80px;
-  position: relative;
-  background:
-    radial-gradient(ellipse 80% 60% at 70% 40%, rgba(46,134,171,0.12) 0%, transparent 60%),
-    radial-gradient(ellipse 50% 40% at 20% 70%, rgba(27,153,139,0.08) 0%, transparent 50%),
-    var(--navy);
-}
-
-.hero-inner { max-width: 720px; }
-
-.hero-chip {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(46,134,171,0.12);
-  border: 1px solid rgba(46,134,171,0.25);
-  color: var(--blue2); padding: 6px 14px;
-  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
-  margin-bottom: 2rem;
-  opacity: 0; animation: rise 0.6s 0.1s ease forwards;
-}
-.hero-chip-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--blue); animation: blink 2s infinite;
-}
-@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-
-.hero-h1 {
-  font-size: clamp(2.2rem, 5.5vw, 4.5rem);
-  font-weight: 800;
-  line-height: 1.15;
-  letter-spacing: -0.04em;
-  color: var(--white);
-  margin-bottom: 1.5rem;
-  opacity: 0; animation: rise 0.6s 0.2s ease forwards;
-}
-.hero-h1 .blue { color: var(--blue2); }
-.hero-h1 .teal { color: var(--teal); }
-
-.hero-sub {
-  font-size: 1.1rem; font-weight: 400; color: var(--muted);
-  line-height: 1.75; max-width: 560px;
-  margin-bottom: 2.5rem;
-  opacity: 0; animation: rise 0.6s 0.3s ease forwards;
-}
-
-.hero-btns {
-  display: flex; gap: 12px; flex-wrap: wrap;
-  opacity: 0; animation: rise 0.6s 0.4s ease forwards;
-}
-
-.btn-primary {
-  background: var(--blue); color: var(--white);
-  padding: 14px 28px; border-radius: var(--r);
-  text-decoration: none; font-weight: 600; font-size: 0.95rem;
-  display: inline-flex; align-items: center; gap: 8px;
-  transition: all 0.2s;
-}
-.btn-primary:hover { background: var(--blue2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(46,134,171,0.3); }
-
-.btn-ghost {
-  border: 1px solid var(--border); color: var(--muted);
-  padding: 14px 28px; border-radius: var(--r);
-  text-decoration: none; font-weight: 500; font-size: 0.95rem;
-  transition: all 0.2s;
-}
-.btn-ghost:hover { border-color: rgba(255,255,255,0.2); color: var(--white); }
-
-.hero-stats {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 1px; margin-top: 5rem;
-  border-top: 1px solid var(--border); padding-top: 2.5rem;
-  opacity: 0; animation: rise 0.6s 0.5s ease forwards;
-}
-.stat { text-align: left; }
-.stat-n {
-  font-size: 2rem; font-weight: 800; letter-spacing: -0.04em;
-  color: var(--white); line-height: 1.1; margin-bottom: 4px;
-}
-.stat-n span { color: var(--blue); }
-.stat-l { font-size: 0.78rem; color: var(--muted); font-weight: 500; }
-
-@keyframes rise {
-  from { opacity:0; transform: translateY(20px); }
-  to   { opacity:1; transform: translateY(0); }
-}
-
-/* ── SECTION BASE ──────────────────────────────────────────────────────────── */
-.section { padding: 100px 5vw; }
-.section-dark { background: var(--navy2); }
-.section-mid  { background: var(--navy3); }
-.section-light { background: var(--navy); }
-
-.eyebrow {
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.12em; text-transform: uppercase;
-  color: var(--blue); margin-bottom: 16px;
-}
-
-.section-h2 {
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
-  font-weight: 800; letter-spacing: -0.03em;
-  color: var(--white); line-height: 1.2;
-  margin-bottom: 16px;
-}
-
-.section-lead {
-  font-size: 1rem; color: var(--muted);
-  max-width: 540px; line-height: 1.75;
-  margin-bottom: 60px;
-}
-
-/* ── PROBLEMA ──────────────────────────────────────────────────────────────── */
-#problema { padding: 100px 5vw; background: var(--navy2); }
-
-.problema-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5vw; align-items: start;
-}
-
-.problema-qs {
-  display: flex; flex-direction: column; gap: 12px;
-  margin-top: 8px;
-}
-
-.problema-q {
-  display: flex; align-items: flex-start; gap: 14px;
-  padding: 16px 20px;
-  background: rgba(255,255,255,0.03);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  font-size: 0.9rem; color: var(--muted);
-  transition: all 0.2s;
-}
-.problema-q:hover { border-color: rgba(46,134,171,0.3); color: var(--text); }
-.problema-q-arrow { color: var(--blue); font-weight: 700; flex-shrink: 0; margin-top: 1px; }
-
-.problema-close {
-  margin-top: 32px; padding: 20px 24px;
-  background: linear-gradient(135deg, rgba(46,134,171,0.12), rgba(27,153,139,0.08));
-  border: 1px solid rgba(46,134,171,0.2);
-  border-radius: var(--r2);
-  font-size: 1rem; font-weight: 600; color: var(--white);
-  line-height: 1.6;
-}
-.problema-close span { color: var(--blue2); }
-
-/* ── SOLUCIÓN ──────────────────────────────────────────────────────────────── */
-#solucion { padding: 100px 5vw; background: var(--navy3); }
-
-.steps-grid {
-  display: grid; grid-template-columns: repeat(4,1fr);
-  gap: 1px;
-  background: var(--border);
-  border-radius: var(--r2); overflow: hidden;
-}
-
-.step {
-  background: var(--navy2);
-  padding: 32px 24px;
-  position: relative;
-  transition: background 0.2s;
-}
-.step:hover { background: #151d2e; }
-
-.step-bar {
-  height: 2px; width: 100%;
-  margin-bottom: 28px;
-}
-.step:nth-child(1) .step-bar { background: var(--blue); }
-.step:nth-child(2) .step-bar { background: var(--teal); }
-.step:nth-child(3) .step-bar { background: #7C6FE0; }
-.step:nth-child(4) .step-bar { background: #2D6A4F; }
-
-.step-num {
-  font-size: 2.5rem; font-weight: 800; letter-spacing: -0.05em;
-  color: rgba(255,255,255,0.06); line-height: 1;
-  margin-bottom: 12px;
-}
-.step-name {
-  font-size: 1.05rem; font-weight: 700; color: var(--white);
-  margin-bottom: 8px;
-}
-.step-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.6; }
-
-/* ── LÍNEAS ──────────────────────────────────────────────────────────────────── */
-#lineas { padding: 100px 5vw; background: var(--navy); }
-
-.lineas-grid {
-  display: grid; grid-template-columns: repeat(2,1fr);
-  gap: 16px;
-}
-
-.linea {
-  padding: 36px 32px;
-  background: var(--navy2);
-  border: 1px solid var(--border);
-  border-radius: var(--r2);
-  transition: all 0.25s;
-  position: relative; overflow: hidden;
-}
-.linea::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 2px;
-}
-.linea:nth-child(1)::before { background: var(--blue); }
-.linea:nth-child(2)::before { background: var(--teal); }
-.linea:nth-child(3)::before { background: #7C6FE0; }
-.linea:nth-child(4)::before { background: #2D6A4F; }
-.linea:hover {
-  border-color: rgba(255,255,255,0.12);
-  transform: translateY(-4px);
-  box-shadow: 0 20px 40px rgba(0,0,0,0.3);
-}
-
-.linea-icon { font-size: 1.8rem; margin-bottom: 16px; display: block; }
-.linea-name {
-  font-size: 1.15rem; font-weight: 700; color: var(--white);
-  margin-bottom: 4px;
-}
-.linea-name-tag { font-weight: 400; color: var(--muted); }
-.linea-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.7; margin-top: 10px; }
-
-/* ── ASSESSMENT CTA ──────────────────────────────────────────────────────────── */
-#assessment {
-  padding: 120px 5vw;
-  background: var(--navy2);
-  text-align: center;
-  position: relative;
-}
-#assessment::before {
-  content: '';
-  position: absolute; inset: 0;
-  background:
-    radial-gradient(ellipse 60% 50% at 50% 0%, rgba(46,134,171,0.1), transparent),
-    radial-gradient(ellipse 40% 40% at 50% 100%, rgba(27,153,139,0.08), transparent);
-  pointer-events: none;
-}
-
-.assessment-inner { position: relative; z-index: 1; max-width: 640px; margin: 0 auto; }
-
-.assessment-badge {
-  display: inline-block;
-  background: rgba(46,134,171,0.12);
-  border: 1px solid rgba(46,134,171,0.25);
-  color: var(--blue2); padding: 7px 18px;
-  border-radius: 100px; font-size: 0.8rem; font-weight: 600;
-  margin-bottom: 28px;
-}
-
-#assessment .section-h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 20px; }
-
-#assessment .section-lead { margin: 0 auto 32px; text-align: center; }
-
-.assessment-pills {
-  display: flex; justify-content: center; gap: 10px;
-  flex-wrap: wrap; margin-bottom: 40px;
-}
-.pill {
-  display: flex; align-items: center; gap: 6px;
-  padding: 8px 16px;
-  background: rgba(255,255,255,0.04);
-  border: 1px solid var(--border);
-  border-radius: 100px;
-  font-size: 0.8rem; color: var(--muted); font-weight: 500;
-}
-.pill::before { content: '✓'; color: var(--teal); font-weight: 700; }
-
-/* ── CONTACTO ──────────────────────────────────────────────────────────────── */
-#contacto { padding: 100px 5vw; background: var(--navy3); }
-
-.contacto-grid {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 5vw; align-items: start;
-}
-
-.contact-methods { display: flex; flex-direction: column; gap: 12px; }
-
-.contact-method {
-  display: flex; align-items: center; gap: 16px;
-  padding: 18px 20px;
-  background: var(--navy2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  text-decoration: none; color: var(--text);
-  transition: all 0.2s;
-}
-.contact-method:hover { border-color: rgba(46,134,171,0.3); transform: translateX(4px); }
-.contact-icon {
-  width: 40px; height: 40px; border-radius: 10px;
-  background: rgba(46,134,171,0.12);
-  display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem; flex-shrink: 0;
-}
-.contact-label { font-size: 0.72rem; color: var(--muted); margin-bottom: 2px; }
-.contact-val { font-size: 0.9rem; font-weight: 600; }
-
-/* FORM */
-.contact-form { display: flex; flex-direction: column; gap: 14px; }
-.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-.form-group { display: flex; flex-direction: column; gap: 6px; }
-.form-group label { font-size: 0.78rem; font-weight: 600; color: var(--muted); }
-.form-group input,
-.form-group select,
-.form-group textarea {
-  background: var(--navy2);
-  border: 1px solid var(--border);
-  border-radius: var(--r);
-  padding: 11px 14px;
-  color: var(--text);
-  font-family: inherit; font-size: 0.875rem;
-  outline: none; transition: border-color 0.2s;
-}
-.form-group input:focus,
-.form-group select:focus,
-.form-group textarea:focus { border-color: var(--blue); }
-.form-group select option { background: var(--navy2); }
-.form-group textarea { resize: vertical; min-height: 110px; }
-.form-submit {
-  background: var(--blue); color: var(--white);
-  padding: 13px 28px; border-radius: var(--r);
-  border: none; font-family: inherit;
-  font-size: 0.95rem; font-weight: 600;
-  cursor: pointer; transition: all 0.2s;
-  align-self: flex-start;
-}
-.form-submit:hover { background: var(--blue2); transform: translateY(-2px); }
-
-/* ── FOOTER ──────────────────────────────────────────────────────────────── */
-footer {
-  background: var(--navy);
-  border-top: 1px solid var(--border);
-  padding: 60px 5vw 40px;
-}
-.footer-top {
-  display: flex; justify-content: space-between;
-  align-items: flex-start; flex-wrap: wrap; gap: 3rem;
-  padding-bottom: 40px;
-  border-bottom: 1px solid var(--border);
-  margin-bottom: 32px;
-}
-.footer-tagline { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
-.footer-cols { display: flex; gap: 4rem; flex-wrap: wrap; }
-.footer-col h4 {
-  font-size: 0.72rem; font-weight: 700;
-  letter-spacing: 0.1em; text-transform: uppercase;
-  color: var(--white); margin-bottom: 16px;
-}
-.footer-col a {
-  display: block; color: var(--muted);
-  text-decoration: none; font-size: 0.875rem;
-  margin-bottom: 8px; transition: color 0.2s;
-}
-.footer-col a:hover { color: var(--white); }
-.footer-bottom {
-  display: flex; justify-content: space-between;
-  align-items: center; flex-wrap: wrap; gap: 12px;
-}
-.footer-legal { font-size: 0.78rem; color: var(--muted); }
-.footer-tagline-bottom {
-  font-size: 0.78rem; color: var(--muted); font-style: italic;
-}
-
-/* ── WA FLOAT ──────────────────────────────────────────────────────────────── */
-.wa-btn {
-  position: fixed; bottom: 24px; right: 24px; z-index: 999;
-  width: 52px; height: 52px; border-radius: 50%;
-  background: #25D366; color: var(--white);
-  display: flex; align-items: center; justify-content: center;
-  text-decoration: none; font-size: 1.4rem;
-  box-shadow: 0 4px 20px rgba(37,211,102,0.35);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.wa-btn:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(37,211,102,0.45); }
-
-/* ── REVEAL ──────────────────────────────────────────────────────────────── */
-.reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-.reveal.on { opacity: 1; transform: translateY(0); }
-
-/* ── RESPONSIVE ──────────────────────────────────────────────────────────── */
-@media (max-width: 900px) {
-  .steps-grid { grid-template-columns: repeat(2,1fr); gap: 1px; }
-  .step { padding: 20px 16px; }
-  .step-num { font-size: 1.8rem; margin-bottom: 8px; }
-  .step-name { font-size: 0.95rem; }
-  .step-desc { font-size: 0.8rem; }
-  .lineas-grid { grid-template-columns: 1fr; }
-  .problema-grid, .contacto-grid { grid-template-columns: 1fr; }
-  .nav-links { display: none; }
-  .hero-stats { grid-template-columns: repeat(2,1fr); gap: 1.5rem; }
-  .hero-btns { flex-direction: column; }
-  .form-row { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-  .steps-grid { grid-template-columns: 1fr; }
-  nav { padding: 0 20px; }
-  .section, #problema, #solucion, #lineas, #assessment, #contacto { padding: 70px 5vw; }
-}
-</style>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="./support.js"></script>
 </head>
 <body>
+<x-dc>
+<helmet>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;500;600;700;800&family=Inter:wght@400;500;600&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{ font-family:'Inter',system-ui,sans-serif; background:#fff; color:#0B1B3F; line-height:1.6; -webkit-font-smoothing:antialiased; overflow-x:clip; scroll-behavior:smooth; }
+  img{ max-width:100%; display:block; }
+  @keyframes juPulse{ 0%,100%{ opacity:1; transform:scale(1);} 50%{ opacity:.35; transform:scale(.8);} }
+  @keyframes juCue{ 0%,100%{ transform:scaleY(.4); opacity:.4;} 50%{ transform:scaleY(1); opacity:1;} }
+  @keyframes juMarquee{ to{ transform:translateX(-50%);} }
+  @keyframes juFloat{ 0%,100%{ transform:translateY(0);} 50%{ transform:translateY(-9px);} }
+  @keyframes juSpin{ to{ transform:rotate(360deg);} }
+  @media (prefers-reduced-motion:reduce){ *{ animation:none !important; } html,body{ scroll-behavior:auto; } }
+</style>
+</helmet>
 
-<!-- NAV -->
-<nav>
-  <a href="#hero" class="nav-logo">
-        <img src="data:image/png;base64,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" alt="juAInot" style="height:40px">
-      </a>
-  <ul class="nav-links">
-    <li><a href="#problema">El Problema</a></li>
-    <li><a href="#lineas">Servicios</a></li>
-    <li><a href="#assessment">Assessment</a></li>
-    <li><a href="#contacto">Contacto</a></li>
-  </ul>
-  <a href="#assessment" class="nav-cta">Assessment Gratis</a>
-</nav>
+<div ref="{{ root }}" style="position:relative; width:100%; overflow-x:clip; background:#fff;">
 
-<!-- HERO -->
-<section id="hero">
-  <div class="hero-inner">
-    <div class="hero-chip">
-      <div class="hero-chip-dot"></div>
-      IA Aplicada a Resultados Empresariales
-    </div>
-    <h1 class="hero-h1">
-      No vendemos tecnología.<br>
-      Resolvemos <span class="blue">problemas</span><br>
-      de <span class="teal">negocio.</span>
-    </h1>
-    <p class="hero-sub">
-      Identificamos dónde la IA genera valor real dentro de su organización, ejecutamos la solución y la mantenemos funcionando. El resultado: procesos más eficientes y costos reducidos.
-    </p>
-    <div class="hero-btns">
-      <a href="#assessment" class="btn-primary">Quiero mi Assessment Gratis →</a>
-      <a href="#solucion" class="btn-ghost">¿Cómo funciona?</a>
-    </div>
-    <div class="hero-stats">
-      <div class="stat">
-        <div class="stat-n"><span>$</span>0</div>
-        <div class="stat-l">Costo del Assessment</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">4</div>
-        <div class="stat-l">Líneas de soluciones IA</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">24<span>/7</span></div>
-        <div class="stat-l">Soluciones que no duermen</div>
-      </div>
-      <div class="stat">
-        <div class="stat-n">ROI</div>
-        <div class="stat-l">Precio basado en retorno</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PROBLEMA -->
-<section id="problema">
-  <div class="problema-grid reveal">
-    <div>
-      <p class="eyebrow">El Problema</p>
-      <h2 class="section-h2">Todas las empresas saben que la IA cambiará todo.</h2>
-      <p class="section-lead" style="margin-bottom:0">El problema es que pocas saben cómo actuar — y esa parálisis les cuesta dinero todos los días.</p>
-      <div class="problema-close" style="margin-top:28px">
-        <span>juAInot</span> cierra esa brecha — con metodología, tecnología y el mejor equipo de desarrollo IA de la región.
-      </div>
-    </div>
-    <div class="problema-qs">
-      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Dónde aplico la IA dentro de mi organización?</div>
-      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Qué procesos puedo automatizar sin arriesgar la operación?</div>
-      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Cómo garantizo un retorno real de la inversión?</div>
-      <div class="problema-q"><span class="problema-q-arrow">→</span> ¿Por dónde empiezo sin perder tiempo ni dinero?</div>
-    </div>
-  </div>
-</section>
-
-<!-- SOLUCIÓN -->
-<section id="solucion">
-  <div class="reveal">
-    <p class="eyebrow">Nuestra Metodología</p>
-    <h2 class="section-h2">Cuatro pasos. Resultados reales.</h2>
-    <p class="section-lead">Un proceso probado que va de la identificación del problema hasta la solución funcionando.</p>
-  </div>
-  <div class="steps-grid reveal">
-    <div class="step">
-      <div class="step-bar"></div>
-      <div class="step-num">01</div>
-      <div class="step-name">Analizamos</div>
-      <div class="step-desc">Diagnóstico integral y gratuito de procesos, puestos y flujos de trabajo.</div>
-    </div>
-    <div class="step">
-      <div class="step-bar"></div>
-      <div class="step-num">02</div>
-      <div class="step-name">Identificamos</div>
-      <div class="step-desc">Oportunidades concretas de automatización con ROI calculado para su empresa.</div>
-    </div>
-    <div class="step">
-      <div class="step-bar"></div>
-      <div class="step-num">03</div>
-      <div class="step-name">Ejecutamos</div>
-      <div class="step-desc">Soluciones de IA integradas a los sistemas existentes. Sin cambiar su infraestructura.</div>
-    </div>
-    <div class="step">
-      <div class="step-bar"></div>
-      <div class="step-num">04</div>
-      <div class="step-name">Escalamos</div>
-      <div class="step-desc">Soporte continuo para crecer sin incrementar proporcionalmente los costos.</div>
-    </div>
-  </div>
-</section>
-
-<!-- LÍNEAS -->
-<section id="lineas">
-  <div class="reveal">
-    <p class="eyebrow">Nuestros Servicios</p>
-    <h2 class="section-h2">4 líneas de soluciones IA</h2>
-    <p class="section-lead">Cada línea está diseñada para resolver un problema específico con resultados medibles.</p>
-  </div>
-  <div class="lineas-grid reveal">
-    <div class="linea">
-      <span class="linea-icon">🔍</span>
-      <div class="linea-name">juAInot <span class="linea-name-tag">Assessment</span></div>
-      <p class="linea-desc">Diagnóstico gratuito e integral. Visitamos su empresa, analizamos cada puesto de trabajo con IA y entregamos un mapa de oportunidades con el ahorro proyectado. Sin costo. Sin compromiso.</p>
-    </div>
-    <div class="linea">
-      <span class="linea-icon">💬</span>
-      <div class="linea-name">juAInot <span class="linea-name-tag">Customer Experience</span></div>
-      <p class="linea-desc">Agentes inteligentes omnicanal que atienden, califican y convierten clientes las 24 horas. Servicio al cliente, gestión de citas, soporte técnico y seguimiento comercial — sin contratar personal adicional.</p>
-    </div>
-    <div class="linea">
-      <span class="linea-icon">⚙️</span>
-      <div class="linea-name">juAInot <span class="linea-name-tag">Operations</span></div>
-      <p class="linea-desc">Automatización de procesos internos: procesamiento de documentos, flujos de aprobación, reportería automática y gestión administrativa. Su equipo deja de hacer tareas repetitivas.</p>
-    </div>
-    <div class="linea">
-      <span class="linea-icon">👥</span>
-      <div class="linea-name">juAInot <span class="linea-name-tag">Workforce</span></div>
-      <p class="linea-desc">Herramientas para entender cómo trabaja su organización: cuellos de botella, productividad real y nuevas oportunidades de mejora continua.</p>
-    </div>
-  </div>
-</section>
-
-<!-- ASSESSMENT CTA -->
-<section id="assessment">
-  <div class="assessment-inner reveal">
-    <div class="assessment-badge">🎯 Diagnóstico Gratuito — Sin Compromiso</div>
-    <h2 class="section-h2">¿Cuánto está perdiendo su empresa hoy?</h2>
-    <p class="section-lead">Lo descubrimos juntos. Visitamos su empresa, analizamos cada proceso y en días recibe su diagnóstico completo con el ahorro proyectado.</p>
-    <div class="assessment-pills">
-      <div class="pill">Diagnóstico completo</div>
-      <div class="pill">Ahorro calculado</div>
-      <div class="pill">Hoja de ruta lista</div>
-      <div class="pill">Sin compromiso</div>
-    </div>
-    <a href="#contacto" class="btn-primary" style="font-size:1rem;padding:16px 36px;">
-      Solicitar Assessment Gratuito →
+  <!-- ===================== NAV ===================== -->
+  <nav data-nav style="position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 28px; transition:background .4s, box-shadow .4s, padding .4s;">
+    <a href="#top" data-brand style="display:flex; align-items:center; gap:11px; font-family:'Sora',sans-serif; font-weight:700; font-size:21px; letter-spacing:-.02em; color:#fff; text-decoration:none; transition:color .4s;">
+      <span style="width:13px; height:13px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#4FB8F5,#1C5BC4); box-shadow:0 0 14px #4FB8F5; flex:none;"></span>
+      <span>ju<b style="font-weight:800;">AI</b>not</span>
     </a>
-  </div>
-</section>
+    <div data-navlinks style="display:flex; align-items:center; gap:30px;">
+      <a href="#problema" data-navlink style="font-size:14.5px; font-weight:500; color:rgba(255,255,255,.82); text-decoration:none; transition:color .3s;" style-hover="color:#4FB8F5;">El reto</a>
+      <a href="#metodologia" data-navlink style="font-size:14.5px; font-weight:500; color:rgba(255,255,255,.82); text-decoration:none; transition:color .3s;" style-hover="color:#4FB8F5;">Metodología</a>
+      <a href="#servicios" data-navlink style="font-size:14.5px; font-weight:500; color:rgba(255,255,255,.82); text-decoration:none; transition:color .3s;" style-hover="color:#4FB8F5;">Servicios</a>
+      <a href="#diferenciadores" data-navlink style="font-size:14.5px; font-weight:500; color:rgba(255,255,255,.82); text-decoration:none; transition:color .3s;" style-hover="color:#4FB8F5;">Por qué juAInot</a>
+      <a href="#contacto" style="font-family:'Sora',sans-serif; font-weight:600; font-size:14px; color:#fff; text-decoration:none; padding:11px 22px; border-radius:100px; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); box-shadow:0 1px 2px rgba(28,91,196,.25), 0 12px 26px -12px rgba(46,155,230,.6); transition:transform .35s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-2px);">Diagnóstico gratis →</a>
+    </div>
+    <button data-mobile-toggle aria-label="Menú" style="display:none; background:none; border:none; color:#fff; cursor:pointer; padding:6px;">
+      <svg width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M4 7h18M4 13h18M4 19h18"/></svg>
+    </button>
+  </nav>
 
-<!-- CONTACTO -->
-<section id="contacto">
-  <div class="reveal">
-    <p class="eyebrow">Hablemos</p>
-    <h2 class="section-h2">¿Por qué no hacerlo ya?</h2>
+  <!-- mobile menu -->
+  <div data-mobile-menu style="position:fixed; inset:0; z-index:99; background:rgba(6,18,46,.96); backdrop-filter:blur(10px); display:none; flex-direction:column; align-items:center; justify-content:center; gap:8px;">
+    <a href="#problema" data-mlink style="font-family:'Sora',sans-serif; font-size:24px; font-weight:600; color:#fff; text-decoration:none; padding:14px;">El reto</a>
+    <a href="#metodologia" data-mlink style="font-family:'Sora',sans-serif; font-size:24px; font-weight:600; color:#fff; text-decoration:none; padding:14px;">Metodología</a>
+    <a href="#servicios" data-mlink style="font-family:'Sora',sans-serif; font-size:24px; font-weight:600; color:#fff; text-decoration:none; padding:14px;">Servicios</a>
+    <a href="#diferenciadores" data-mlink style="font-family:'Sora',sans-serif; font-size:24px; font-weight:600; color:#fff; text-decoration:none; padding:14px;">Por qué juAInot</a>
+    <a href="#contacto" data-mlink style="margin-top:14px; font-family:'Sora',sans-serif; font-weight:600; font-size:18px; color:#fff; text-decoration:none; padding:14px 30px; border-radius:100px; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5);">Diagnóstico gratis →</a>
   </div>
-  <div class="contacto-grid">
-    <div class="contact-methods reveal">
-      <a href="mailto:Rolando@juainot.com" class="contact-method">
-        <div class="contact-icon">✉️</div>
-        <div>
-          <div class="contact-label">Correo electrónico</div>
-          <div class="contact-val">Rolando@juainot.com</div>
-        </div>
-      </a>
-      <a href="https://wa.me/50688754240" target="_blank" class="contact-method">
-        <div class="contact-icon">💬</div>
-        <div>
-          <div class="contact-label">WhatsApp</div>
-          <div class="contact-val">+506 8875 4240</div>
-        </div>
-      </a>
-      <a href="https://calendly.com/juainot" target="_blank" class="contact-method">
-        <div class="contact-icon">📅</div>
-        <div>
-          <div class="contact-label">Agendar una llamada</div>
-          <div class="contact-val">Escoja su horario</div>
-        </div>
-      </a>
-      <div class="contact-method" style="cursor:default">
-        <div class="contact-icon">📍</div>
-        <div>
-          <div class="contact-label">Ubicación</div>
-          <div class="contact-val">Costa Rica · Latinoamérica</div>
-          <div style="font-size:0.72rem;color:var(--muted);margin-top:2px;">3-102-937092 SRL</div>
+
+  <!-- ===================== HERO ===================== -->
+  <header id="top" data-hero style="position:relative; min-height:100vh; display:flex; align-items:center; overflow:hidden; padding:118px 0 80px; background:linear-gradient(180deg,#06122E,#0A1B43);">
+    <img src="juainot/assets/img-00-hero.png" alt="" data-hero-bg style="position:absolute; inset:0; width:100%; height:100%; object-fit:cover; opacity:.38; z-index:0; transform:scale(1.06);">
+    <div style="position:absolute; inset:0; z-index:1; background:radial-gradient(120% 90% at 72% 12%, rgba(79,184,245,.20), transparent 55%), radial-gradient(90% 80% at 16% 95%, rgba(28,91,196,.30), transparent 60%);"></div>
+    <canvas data-node-canvas style="position:absolute; inset:0; z-index:2; display:block;"></canvas>
+    <div style="position:absolute; inset:0; z-index:3; background:linear-gradient(180deg, rgba(6,18,46,.45) 0%, rgba(6,18,46,.25) 40%, rgba(10,27,67,.86) 100%); pointer-events:none;"></div>
+
+    <div data-hero-content style="position:relative; z-index:4; width:100%; pointer-events:none;">
+      <div style="max-width:1180px; margin:0 auto; padding:0 28px; width:100%;">
+        <div style="max-width:780px; pointer-events:auto;">
+          <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#4FB8F5; margin-bottom:24px; display:inline-flex; align-items:center; gap:10px;">
+            <span style="width:7px; height:7px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5; animation:juPulse 2.4s ease-in-out infinite;"></span>
+            Inteligencia Artificial aplicada · Costa Rica &amp; Latinoamérica
+          </span>
+          <h1 style="font-family:'Sora',sans-serif; font-weight:700; line-height:1.04; letter-spacing:-.02em; font-size:clamp(38px,5.6vw,70px); color:#fff; margin:0 0 24px;">Convertimos la <span style="background:linear-gradient(110deg,#7fd0ff,#4FB8F5 50%,#2E9BE6); -webkit-background-clip:text; background-clip:text; color:transparent;">Inteligencia Artificial</span> en resultados empresariales reales.</h1>
+          <p style="font-size:clamp(17px,2vw,20px); color:rgba(232,242,253,.86); max-width:580px; margin:0 0 38px; font-weight:400;">No vendemos tecnología: resolvemos problemas de negocio. Identificamos dónde la IA genera valor, la implementamos a la medida y la mantenemos funcionando.</p>
+          <div style="display:flex; flex-wrap:wrap; gap:14px;">
+            <a href="#contacto" style="font-family:'Sora',sans-serif; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:9px; padding:16px 28px; border-radius:100px; cursor:pointer; border:none; white-space:nowrap; color:#fff; text-decoration:none; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); box-shadow:0 1px 2px rgba(28,91,196,.25), 0 14px 30px -10px rgba(46,155,230,.55), inset 0 1px 1px rgba(255,255,255,.35); transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-2px); box-shadow:0 1px 2px rgba(28,91,196,.3), 0 20px 38px -10px rgba(46,155,230,.7), inset 0 1px 1px rgba(255,255,255,.4);">
+              Solicitar diagnóstico gratuito
+              <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <a href="#metodologia" style="font-family:'Sora',sans-serif; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:9px; padding:16px 28px; border-radius:100px; cursor:pointer; white-space:nowrap; color:#fff; text-decoration:none; background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.22); backdrop-filter:blur(6px); transition:transform .35s cubic-bezier(.16,1,.3,1), background .3s;" style-hover="background:rgba(255,255,255,.14); transform:translateY(-2px);">Ver cómo trabajamos</a>
+          </div>
         </div>
       </div>
     </div>
-    <div class="reveal">
-      <form class="contact-form" onsubmit="handleForm(event)">
-        <div class="form-row">
-          <div class="form-group">
-            <label>Nombre *</label>
-            <input type="text" required placeholder="Juan Pérez">
-          </div>
-          <div class="form-group">
-            <label>Empresa *</label>
-            <input type="text" required placeholder="Mi Empresa S.A.">
-          </div>
-        </div>
-        <div class="form-row">
-          <div class="form-group">
-            <label>Email *</label>
-            <input type="email" required placeholder="juan@empresa.com">
-          </div>
-          <div class="form-group">
-            <label>WhatsApp</label>
-            <input type="tel" placeholder="+506 0000 0000">
-          </div>
-        </div>
-        <div class="form-group">
-          <label>¿Qué le interesa?</label>
-          <select>
-            <option value="">Seleccionar...</option>
-            <option>Assessment gratuito</option>
-            <option>juAInot Customer Experience</option>
-            <option>juAInot Operations</option>
-            <option>juAInot Workforce</option>
-            <option>Información general</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label>Mensaje</label>
-          <textarea placeholder="Cuéntenos sobre su empresa y lo que le gustaría mejorar..."></textarea>
-        </div>
-        <button type="submit" class="form-submit">Enviar mensaje →</button>
-      </form>
+
+    <div style="position:absolute; bottom:30px; left:50%; transform:translateX(-50%); z-index:5; display:flex; flex-direction:column; align-items:center; gap:8px; font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.2em; text-transform:uppercase; color:rgba(232,242,253,.6); pointer-events:none;">
+      <span>Scroll</span>
+      <span style="width:1px; height:46px; background:linear-gradient(#4FB8F5,transparent); animation:juCue 2s ease-in-out infinite;"></span>
+    </div>
+  </header>
+
+  <!-- ===================== MARQUEE ===================== -->
+  <div style="background:#0B1B3F; overflow:hidden; padding:18px 0; border-top:1px solid rgba(255,255,255,.06);">
+    <div data-marquee style="display:flex; width:max-content; animation:juMarquee 34s linear infinite;">
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">Automatización de procesos<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">Atención al cliente 24/7<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">Reducción de costos<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">ROI medible<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">Sin cambiar tu infraestructura<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
+      <span style="font-family:'Sora',sans-serif; font-weight:600; font-size:17px; color:rgba(255,255,255,.92); padding:0 0 0 34px; display:flex; align-items:center; gap:34px; white-space:nowrap;">Soporte continuo<span style="width:6px; height:6px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5;"></span></span>
     </div>
   </div>
-</section>
 
-<!-- FOOTER -->
-<footer>
-  <div class="footer-top">
-    <div>
-      <a href="#hero" class="nav-logo">
-        <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAG4AAAA0CAIAAADkLJo9AAABWGlDQ1BJQ0MgUHJvZmlsZQAAeJx9kLFLw1AQxr9WpaB1EB0cHDKJQ5SSCro4tBVEcQhVweqUvqapkMZHkiIFN/+Bgv+BCs5uFoc6OjgIopPo5uSk4KLleS+JpCJ6j+N+fO+74zggOW5wbvcDqDu+W1zKK5ulLSX1jAS9IAzm8Zyur0r+rj/j/T703k7LWb///43Biukxqp+UGcZdH0ioxPqezyXvE4+5tBRxS7IV8onkcsjngWe9WCC+JlZYzagQvxCr5R7d6uG63WDRDnL7tOlsrMk5lBNYxA48cNgw0IQCHdk//LOBv4BdcjfhUp+FGnzqyZEiJ5jEy3DAMAOVWEOGUpN3ju53F91PjbWDJ2ChI4S4iLWVDnA2Rydrx9rUPDAyBFy1ueEagdRHmaxWgddTYLgEjN5Qz7ZXzWrh9uk8MPAoxNskkDoEui0hPo6E6B5T8wNw6XwBA6diE8HYWhMAABIjSURBVHic7VtbjCXXVV17n3Oq6t7b3bcf0zM9np6XJ7YzHjuZxDZ5kQgcpEREhLfgg0iEEMFH+EHwg8QPICQEfCE+IhAIiIzkECkgUED+SBQpCgl+xQ/s+DHOjN1jj7tnuvu+quo89uajbs/09Lx67I47QrN1dVV17qlTu9bZtfc6e59Lne5tuCU7IbzbCvz/kVtQ7pjcgnLHxO62Am9PiAHQxpmq7KIuP0JQEjHoIiwEiMp1oVGVWAKANmfKLqdLI7zT8qMDJSU/UAlQKABVsLPFBFSv3l2VjStmDpPhZgqYabSyFENFtDte60cEStJUzRx5cPLITwrBOM6ytPbS15ef/ya7Ymx1m3uzieXqvvu+cOCTf2SKMpu0Jpf2XPvVr/zZkw/9aTYxo5Le+WfYfSiJTPLrc3f8yt6P/TW3nGvDFHBtLH7yd155+PdOff1vXLu7FRoFSMjOR++EPLcYVhM46y5c04p/+LL7UKpEm89M3vUFXwcT+lJb02KpRaQ4/DN/8ObTXxutr7B1V2BEsQxxoEYk5kysEjSFsDvPAGDXyRCRSbHfPfQp7hyTeijiJBlNLOLSqJZ8dt8DvyrVgMhccSEkaBxoGEqqJFUiUSXpld7gHZNdhlI1OTfZOvBzEmpV0qQSkTxSBQmm7oX9H/tca35RQo2toVk5OXjW0JbYFmkpGJxh1wL47kJJLHHY3vNBnjiefF+TaBJNKgGp1lhTGFa2e9vih34t1v3LDVPBVspTfuml6rXnyzPPVa+9WJ05U77x8pX2+849za6mMxgymj/553bfxwmBXZttwdaxZc7IFpR11HVdruce+4sHy2GP2V72/moiOJBRqErQ5EHENt+td3z7Vkkbnx0SYk1l0T1uuveK76moJlERCTH5pAHiNXoK/RpTi3tO/qxUfeLLLY4zQYh+RcJa3p6cuf2+1uyiStxJJW9Gth3BNRJBVUE7GPRTsffBpIZSJWxJoqZANtNokybAsFFhqtfSvg/+5uvffVhi2OQxWdIgc93pd/3yzIlPdu+4Z+rY4eWvf/GJf/hdNzG3K7xyW1ZJpKY4hM6HbftdvDNTTpp83jlguu9PcaCaIEFSrZTJ6rfSm9+SVKRaUk2ppnq9zOfvWnj/L4ZyndgCALHIaLL7wSMf+dr8h/+qdexTki/UlYrs6Htzk2/hDU2MVKNz3VicrIVzt4f8GxpHb3dxRgSts+kHhDsaR2NaSOQIF174W6mGe6d/QqImVhARUK6lhR/73JuPfyXEQGxUQp7NL9z1RWkd9IMeHENVfB697CCSqhFNZmB7g94QEQVYpGZZM0SU1qDh7acMVJJ10zx1f4ojSBIJIh4wsff96sJT1frjYeU7EltplKRErEy9Wto9J/ac+OlY9YitSNlqv5f4gFQ9JCueU4VUIcW3qdclIaJWa7pozTJv16Hd2LiIKMZah4+a4bdl8F2R0MyS6vizRRRXb980IkPrrHsC2ZzGkWoax1+Y6o1HYn0+iR++9iUTSGqkSlOlUlG5luZOfjYrJlQSERiGIhBJPaRGqhBGkDj2pZsU2Jxq2mIBW1ounaqqqvX5/aH4iKCjmlRvbD3b9JVMqBzOGvLNJURwFpmDtVvvYZgyC2fB1zJeFaKMp+6LyQNJJapEkYSwWp57BDBsOoOV/wznn4YvtBQZIZVUXyjz+Qfmj38qVT3iwvsz8AMKTmttoEwjqFcAzNQoplCoJwgAQlSNlyGrkRCaWEpQQoCmpoOzsAYhchAyjMwisyC6AcfajvUSNNr2Ccr2FhhUvad88GxabvK9bFpSnxn1XyRyTY5BNbQnjoq7HRDfeyr5C0SXk0GQSp1P3CF2AakUKogiUs2mndYer9dfIJODTAgrg7P/OFP8pcQSSgCpoOqje/wz5575KsHU/lwql+EOaYjqSRhhCI2kiOz255N3U1oerT4u7m6x+xRkyWf+xeCXx4+swbg94g4JTyVlULS6rtUpkQGUuDhO+X4KVlXM1PstfFJupTfK3gt6bePbpiPQUehE7G0bZ4gATYl69azaCVO9bjYhRVAf7VDnSCNHumq4JyKevFegJEHFgoIAHP3o9f8SiWRzaCKeKHv/Md37bbQPK4ICCvIXRsWej84cffD8y49QDq3f4Hi7+EorgCAVNIJIfXSDaqbDqu0PRdoPrcHOK7LWrNVvBj8gCLKjoXhPooylZPJKUzUt2IlFLh9Tf9brpMQp0UBEdZzwJArbzUpiyLUD23Z9KiEZSkxJx05IiQJTYLoy0S2GoiIR6ZWZRtXo8nl1i5pKmFwkMnmQ0/IH9dqTxAVUABBldb3Uf/Ofurf9sWitsEJQTT4ze+75rbXT3xAtk18ygWAAq0qaRhCvRADUUVnF3MIX9TdiGJjiWG2OBs0Lt0j+eyY/7POTCsnqZymcVgls28ndEe0h27qf5ZvWP4l4qrTvU9PK/GNG14ldXXmR6wXc7XMaVtBm79uc6hXxhcbtVx+FkKi4M8GpBEhSSZoClMLqf0vsY7yeIUDITPTWH9bBy1TnKAUlUJlwYWS6H53Y94HoeyGcMh7klWpCDdSQoAoQoGoMi/NP+PoN1SqVzxrtKUxCyzCLO6aUuXgG9TOSSoXEsMbVE07PB21R8a4YR3W5BoCI6qpXVmvD4WpVDa/PirYNJVEz9EUmRNcKaoSNasvWX1STsVOaH5VYqiSRCIkigrgaVh9VuI0wKiBiKkI6Ww3+xfqcKkGpWqqOYirz2Ts/T4APpzgpeSKvCNAaiBgvyWAQ16NfI8pVjTHcyqIqx+CVOslMs9YcfiBqQAYAUSYabTrNBOE9xAUxE6CqRExkme0NqfRNMG3dzHGowfZq+cGGKV3FLIkQKT8cUUAbkwySalWS/rOxep040zSCBiarYZj8gLiz2nuI6tfIO6pAFVCZuDZqzX6iu+/Do9EzFCqOTB7wQA1KY0VBpBov+iImcs6qCgHGtkEZtJRUEvGG/gJwqM5DvMCpWkA2J062kyLZNpRNXXSTIV5B3DYAw9h+tw6gYkyh2VGVIBsmqZIoVWntu6IE+M7M/Xvu/ZPbPv7QXb/0z9OHHhAf6/iDQf/LWWhRnagC1YQypbroHvyNOrwsYZlDRkGpBlXYYDtbaa0CqkJECiUiQKFylUovQSEKGMOqALZBJjfJza3/mnlWhWXDDNVxJfqSLoD3AUpXTCMRotr9kSYhNVREkqSgolKdTtUSoO2pezoHP2dnTubzJ6ZOfuL45x+a3HeHRLow/JLWZ9k7qpUq5YrSWtWe+gU3uehH3zfBUVATwDU0yEU1Gk03qd78wt6PVIS4bV0HY9cKgKFi7AQoZ3gRf9GRbb9WdHNQ0oYNMidDUVVdPmetVU0AqSYiFZqRZr2w6UJVNSaj/PYkSVXGtDzVKolGz6VYEhnKT4RYqe9Bo9S9fH5m7p5Pa5BKXu6PHrahhTpRDaoYQ0+xO3fwMzG+RAHkFbWSh9TSGJKiCeUbbv3iITHryOi6UEHZEUJobFM1EiDmoBKbtKpaExkQADbGbvS5Aag3ka8k2ogmxCmWpD1APM2a4t3WOII4myE/Ge1hUk9brkVgtxBpliSoqkqCeCjg34yD58GOiERJYi2hiqPKDzkMRahFUCDvpy9bWWFvOCjVamojvZB3Pk2FkPcUmSJxDU6bNmpsen+bV6lpEQk2vAJISQe5fa+zGUGdbaH1nmAPGK1QnxIhZjEQASg7ZDkD1Nr8+gBtP/moquOpJpCI2HDK5XuDmCHdYdoHVMrEXQK6+fp6PdMg2HyrRufayd0VJTIBSkogSYqMyqdTHMC0VEoKZyXeHapVv3p21M6NmahffxaGDNr9+plh/q8t/mzEgMSogsQT72/t+yk9s8axg8bTNKFCiSjbWICN9SC2YAdikE31adZCirtrPmHtUUlDMROJ2qw1l49LWgU5SG3pQkA32EVqd0XVWa/9b4u+vdUOEROTQjZimYJsChcK/h9jjiV0k+bGFEb77J8iKjgsqibSGmBVMSTijnvtECLIkIqKChdZeFXK74MzqChsPXh0orWI/L5Ul6nXX375q+df+HfOJqFR1J4b/f3t7U9zaGEjjUIjDe4g2zUTAzFzAkRBTFoa/6rGZd1IFAso1cvGe0rrACsM+eczGog9lHjaZHOSyiyepnAqxWWFI6iAMfzfooVo9gm1jYGEc3pdXrmdfGUyxsBOkKr3Qw6eyDSUqyrPWbPiTFuDOMsqZUxx4Jl1CQDIqoplQnGi5gOqnkAqSZkIWY7zKL8jqg0jITIxVv1zDxflM+gtDl58dXT+e0qWQAqx1BnEp/r+3ybtr0f0CBkpVATEmLBYq5EKCgpRkCFd1tESgUAGUCLEKHHtWQMBuGkETKpeJVpypmVtEWMpqRQFLtkyJQmmfNLZTkpkKMZY4ro1uGtCSUQEUY3GsLojQdrMMNITCGA2+tiYFGnAhBAA8Dh5Qa6xBpdNinu350UVD1gFMTEj2Hha/fNxY1YANGgm1eHqE4MLjwLMpjUOIc23Zivp77ru5ym1FRXADcfRIkumzx6gruWGJ9KGApsCxaU6ykVq7BSaYhnjaKw5XXZJ476THxIhKK7Iy2wLSgIiqKvFnZAabipoV2GdDCieUd2cPGu8ZzP5dJHKqoo1xrqZgAMhGYpnCLDWEDzFAcK5FNcVdhOOG6MBGCO4wWTHTy+GWv3w3Fnz+3vNHzosqhgQaYRmoOk2r4o1/fXyEUJ+DUZ9jRZiAl3jkgbQZjl0Y5Z+1eItQSPZmdT+cYFTTaQhox7Kp1Ncv+HkbGjQrMQjQZr4w0w6DqMGW0HcpnDSfmEOTGUfECma9xlEbODAlTy7Xj5DtGvF22vWwZkNmamQLBMz1UhrqqJ4CxBcIiiXH78ldcECL1puod9KIGSGWru40eWavlIkIq0wFICAlAxtwXHMM68EiDYdbxwQbSyBrqwKjLM5GwNeuvYi/bo4pkKYMqYcikuFXG1idWPyDWlrUv3jdMCVI2/c98rjty7XoegEsiAHciA7LpmItFoTzmUiSWIQiQBUk0jQ8bGoRNXUUGLd+JYUm9q0SlRJIikvOsa4lLy1NssyVZEUVJqywRhHl+XGOFVVTaqp4dgpeZGgSONtV6lWpJSqpt3aYmJqn0iCaqczpSIKbUaWFFxW5K2OiGyM1nj2tCM7r69Phrauo0FQdjGOitbUzL6jo2G/v/JK0Zmb6O4rR6vD1SXXmp6c3j/qLavUNmv5urLWSgrdPUd6q2fL/vnJ2UNZ0emtnAJlilC0J6dmj9Rlv67OzOw9Zly7Gp4frr1OxkHq2YX3gfDm6cey1lzR2VMOzoWqN7twXFXXl1+cmDmSFTPV8Nyod3Zi+mDemumdP6VEnE+pLLXnDuSduZCkLvszC3cyZ8PeG6EesckJ2pk+6LK8t/KKy9rF5L5qsFyP1rfu/rhJuclytgq7SSIm1+6vn0+STNY22WR//VyrNeWydmty//rKK/nEfIzRtbqTM7cFXxlbxCSmmCtak63JubU3X5SUTGsSxFOzhwZrSyZrFZ3prJgarp01WbdZo6piNLiwtnJGVeYP3lN02t3ZhXxiTkR7yy8Rkcm7w/VXyXXy9nSnu9BbeWly7jBUVKLLO1kxub5yyrX3tKbmJaVhb5lth21GNs/bXWPz3vIrABtXgEzWnlOVKzbL/VChBDE8ANIQ636o+qpKWiU/SLEEJPnezN5j0fdDPQjVKKVUl+s2n8xcDgneD5MfTs/fTmwQSyb0zi8VE3stG18N69EFXw0kDQFSgIh9td7uzBLxaH2Jgf6FpVj1rXXdvbcTsYS1GAaQyleDerTanT9aj1YIyogxVJLCxPSiH67WgwvG2NmFI4YJEgjJVwNjXXtmUaE262TOSKzeJo64TgS/5gVEqkob9Wa9lJpUVUDFuCKNt0NeikLGOJEoIkRkbJaib+KJpGhcoRJFhJmbOHMxBaOqxjqRpClaV4hEkcRs2dgUa6KmPzV/pDAuj74iZiKIKBEZ42KsmMzswtGiM7e89Fxd9pmNSCI2zFaiBxEbKzuxGWHnNwVeAvoajZd3oCYpe6PRLut27VvwZv++0SJsHFRj9LzZG47j/tVHewuy83vRr6rW5sbLO9zgMS6a/LVH2NyoV2uhFAOArdszLxapduivPru/rf8dkIvz8UO9y63/OO6Y3IJyx+QWlDsmt6DcMbkF5Y7J/wEwJYMhS/X4VQAAAABJRU5ErkJggg==" alt="juAInot" style="height:40px">
+  <!-- ===================== EL RETO ===================== -->
+  <section id="problema" style="padding:120px 0; background:#F5F8FC; border-top:1px solid rgba(14,33,80,.06); scroll-margin-top:84px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:1.1fr .9fr; gap:64px; align-items:start;" data-retogrid>
+      <div data-reveal>
+        <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#1C5BC4;">El reto</span>
+        <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.08; font-size:clamp(30px,4.2vw,46px); color:#0B1B3F; margin:18px 0 24px;">Sabés que la IA va a cambiar tu forma de operar. La duda es <span style="background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent;">por dónde empezar.</span></h2>
+        <p style="font-size:18px; color:#51708E; max-width:460px; margin:0;">juAInot es el puente entre esa incertidumbre y una solución ejecutada: diagnóstico, implementación a la medida y mantenimiento para que siga funcionando.</p>
+      </div>
+      <ul data-reveal data-delay=".1s" style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column;">
+        <li style="display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-top:1px solid rgba(14,33,80,.10); border-bottom:1px solid rgba(14,33,80,.10); font-size:16.5px; color:#0B1B3F; font-weight:500;"><span style="font-family:'Space Mono',monospace; font-size:13px; color:#2E9BE6; padding-top:2px; flex:none;">01</span>¿Dónde aplicar IA dentro de la organización?</li>
+        <li style="display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(14,33,80,.10); font-size:16.5px; color:#0B1B3F; font-weight:500;"><span style="font-family:'Space Mono',monospace; font-size:13px; color:#2E9BE6; padding-top:2px; flex:none;">02</span>¿Qué procesos automatizar sin poner en riesgo la operación?</li>
+        <li style="display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(14,33,80,.10); font-size:16.5px; color:#0B1B3F; font-weight:500;"><span style="font-family:'Space Mono',monospace; font-size:13px; color:#2E9BE6; padding-top:2px; flex:none;">03</span>¿Cómo garantizar un retorno real de la inversión?</li>
+        <li style="display:flex; gap:16px; align-items:flex-start; padding:18px 0; border-bottom:1px solid rgba(14,33,80,.10); font-size:16.5px; color:#0B1B3F; font-weight:500;"><span style="font-family:'Space Mono',monospace; font-size:13px; color:#2E9BE6; padding-top:2px; flex:none;">04</span>¿Por dónde empezar sin perder tiempo ni dinero?</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ===================== METODOLOGÍA (sticky stack) ===================== -->
+  <section id="metodologia" style="padding:120px 0 160px; background:#0B1B3F; color:#fff; scroll-margin-top:84px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px;">
+      <div data-reveal style="max-width:680px; margin-bottom:60px;">
+        <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#4FB8F5; display:block; margin-bottom:18px;">Cómo trabajamos</span>
+        <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.06; font-size:clamp(32px,4.6vw,52px); color:#fff; margin:0 0 20px;">Cuatro pasos, un solo objetivo: <span style="background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent;">resultados medibles.</span></h2>
+        <p style="font-size:18px; color:rgba(232,242,253,.7); margin:0;">Un método claro que va del diagnóstico al crecimiento, sin sorpresas y sin tocar lo que ya funciona.</p>
+      </div>
+
+      <div data-stack style="position:relative;">
+        <div style="position:sticky; top:118px; margin-bottom:26px;">
+          <article data-stack-card style="position:relative; border-radius:28px; padding:46px 48px; background:linear-gradient(135deg,#10245A,#0C1B41); border:1px solid rgba(255,255,255,.08); box-shadow:0 -10px 60px -20px rgba(0,0,0,.6); display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center; overflow:hidden;">
+            <div style="position:absolute; inset:0; opacity:.7; pointer-events:none; background:radial-gradient(120% 140% at 100% 0%, rgba(79,184,245,.16), transparent 55%);"></div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(46px,8vw,92px); line-height:.9; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent; position:relative; z-index:1;">01</div>
+            <div style="position:relative; z-index:1;">
+              <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:26px; color:#fff; margin:0 0 12px;">Analizamos</h3>
+              <p style="color:rgba(232,242,253,.78); font-size:16px; max-width:560px; margin:0;">Diagnóstico integral y gratuito de procesos, puestos y flujos de trabajo. Entendemos cómo opera tu empresa antes de proponer nada.</p>
+            </div>
+          </article>
+        </div>
+        <div style="position:sticky; top:138px; margin-bottom:26px;">
+          <article data-stack-card style="position:relative; border-radius:28px; padding:46px 48px; background:linear-gradient(135deg,#10245A,#0C1B41); border:1px solid rgba(255,255,255,.08); box-shadow:0 -10px 60px -20px rgba(0,0,0,.6); display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center; overflow:hidden;">
+            <div style="position:absolute; inset:0; opacity:.7; pointer-events:none; background:radial-gradient(120% 140% at 100% 0%, rgba(79,184,245,.16), transparent 55%);"></div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(46px,8vw,92px); line-height:.9; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent; position:relative; z-index:1;">02</div>
+            <div style="position:relative; z-index:1;">
+              <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:26px; color:#fff; margin:0 0 12px;">Identificamos</h3>
+              <p style="color:rgba(232,242,253,.78); font-size:16px; max-width:560px; margin:0;">Detectamos oportunidades concretas de automatización con el ROI calculado para tu empresa. Priorizamos lo que más ahorra.</p>
+            </div>
+          </article>
+        </div>
+        <div style="position:sticky; top:158px; margin-bottom:26px;">
+          <article data-stack-card style="position:relative; border-radius:28px; padding:46px 48px; background:linear-gradient(135deg,#10245A,#0C1B41); border:1px solid rgba(255,255,255,.08); box-shadow:0 -10px 60px -20px rgba(0,0,0,.6); display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center; overflow:hidden;">
+            <div style="position:absolute; inset:0; opacity:.7; pointer-events:none; background:radial-gradient(120% 140% at 100% 0%, rgba(79,184,245,.16), transparent 55%);"></div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(46px,8vw,92px); line-height:.9; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent; position:relative; z-index:1;">03</div>
+            <div style="position:relative; z-index:1;">
+              <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:26px; color:#fff; margin:0 0 12px;">Ejecutamos</h3>
+              <p style="color:rgba(232,242,253,.78); font-size:16px; max-width:560px; margin:0;">Implementamos soluciones de IA integradas a tus sistemas existentes, sin cambiar tu infraestructura. Funcionando, no en una presentación.</p>
+            </div>
+          </article>
+        </div>
+        <div style="position:sticky; top:178px;">
+          <article data-stack-card style="position:relative; border-radius:28px; padding:46px 48px; background:linear-gradient(135deg,#10245A,#0C1B41); border:1px solid rgba(255,255,255,.08); box-shadow:0 -10px 60px -20px rgba(0,0,0,.6); display:grid; grid-template-columns:auto 1fr; gap:40px; align-items:center; overflow:hidden;">
+            <div style="position:absolute; inset:0; opacity:.7; pointer-events:none; background:radial-gradient(120% 140% at 100% 0%, rgba(79,184,245,.16), transparent 55%);"></div>
+            <div style="font-family:'Sora',sans-serif; font-weight:800; font-size:clamp(46px,8vw,92px); line-height:.9; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); -webkit-background-clip:text; background-clip:text; color:transparent; position:relative; z-index:1;">04</div>
+            <div style="position:relative; z-index:1;">
+              <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:26px; color:#fff; margin:0 0 12px;">Escalamos</h3>
+              <p style="color:rgba(232,242,253,.78); font-size:16px; max-width:560px; margin:0;">Soporte continuo para crecer sin que los costos suban en la misma proporción. La IA evoluciona con tu operación.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== SERVICIOS ===================== -->
+  <section id="servicios" style="padding:120px 0; scroll-margin-top:84px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px;">
+      <div data-reveal style="max-width:680px; margin-bottom:60px;">
+        <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#1C5BC4; display:block; margin-bottom:18px;">Servicios</span>
+        <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.06; font-size:clamp(32px,4.6vw,52px); color:#0B1B3F; margin:0 0 20px;">Soluciones de IA pensadas para tu operación.</h2>
+        <p style="font-size:18px; color:#51708E; margin:0;">Desde el diagnóstico gratuito hasta agentes que atienden, procesos que se automatizan solos y datos que revelan dónde mejorar.</p>
+      </div>
+
+      <div data-servgrid style="display:grid; grid-template-columns:repeat(2,1fr); gap:28px;">
+
+        <!-- Featured Assessment -->
+        <div data-reveal style="grid-column:1 / -1;">
+          <article data-tilt style="position:relative; background:#fff; border:1px solid rgba(14,33,80,.10); border-radius:26px; padding:30px; overflow:hidden; box-shadow:0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30); display:grid; grid-template-columns:1fr 1fr; gap:36px; align-items:center; transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s; will-change:transform;">
+            <div style="position:relative; height:100%; min-height:300px; border-radius:18px; overflow:hidden; background:linear-gradient(135deg,#E8F2FD,#fff);">
+              <img src="juainot/assets/img-01-assessment.png" alt="Diagnóstico juAInot" style="width:100%; height:100%; object-fit:cover;">
+            </div>
+            <div>
+              <span style="display:inline-flex; align-items:center; gap:7px; font-family:'Space Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); padding:6px 12px; border-radius:100px; margin-bottom:16px;">● Diagnóstico gratuito</span>
+              <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:25px; color:#0B1B3F; margin:0 0 12px;">juAInot Assessment</h3>
+              <p style="color:#51708E; font-size:15.5px; margin:0 0 20px;">Visitamos tu empresa, analizamos cada puesto de trabajo con IA y entregamos un mapa de oportunidades con el ahorro proyectado. Sin compromiso.</p>
+              <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+                <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Diagnóstico completo</li>
+                <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Ahorro calculado</li>
+                <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Hoja de ruta lista</li>
+                <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Sin compromiso</li>
+              </ul>
+            </div>
+          </article>
+        </div>
+
+        <!-- Customer Experience -->
+        <div data-reveal data-delay=".05s">
+          <article data-tilt style="position:relative; height:100%; background:#fff; border:1px solid rgba(14,33,80,.10); border-radius:26px; padding:30px; overflow:hidden; box-shadow:0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30); transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s; will-change:transform;">
+            <div style="aspect-ratio:4/3; border-radius:18px; margin-bottom:24px; overflow:hidden; background:#F4F8FD; display:flex; align-items:center; justify-content:center;">
+              <img src="juainot/assets/img-02-customer.png" alt="Customer Experience" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+            <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#2E9BE6;">Customer Experience</span>
+            <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:#0B1B3F; margin:10px 0 12px;">Atención que convierte 24/7</h3>
+            <p style="color:#51708E; font-size:15.5px; margin:0 0 20px;">Agentes inteligentes omnicanal que atienden, califican y convierten clientes a toda hora, sin contratar más personal.</p>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Servicio al cliente</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Gestión de citas</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Soporte técnico</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Calificación de prospectos</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Operations -->
+        <div data-reveal data-delay=".1s">
+          <article data-tilt style="position:relative; height:100%; background:#fff; border:1px solid rgba(14,33,80,.10); border-radius:26px; padding:30px; overflow:hidden; box-shadow:0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30); transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s; will-change:transform;">
+            <div style="aspect-ratio:4/3; border-radius:18px; margin-bottom:24px; overflow:hidden; background:#F4F8FD; display:flex; align-items:center; justify-content:center;">
+              <img src="juainot/assets/img-03-operations.png" alt="Operations" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+            <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#2E9BE6;">Operations</span>
+            <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:#0B1B3F; margin:10px 0 12px;">Procesos internos en automático</h3>
+            <p style="color:#51708E; font-size:15.5px; margin:0 0 20px;">Eliminamos las tareas repetitivas: documentos, aprobaciones y reportes que se gestionan solos.</p>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Procesamiento de documentos</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Flujos de aprobación</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Reportería automática</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Gestión administrativa</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Workforce -->
+        <div data-reveal data-delay=".05s">
+          <article data-tilt style="position:relative; height:100%; background:#fff; border:1px solid rgba(14,33,80,.10); border-radius:26px; padding:30px; overflow:hidden; box-shadow:0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30); transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s; will-change:transform;">
+            <div style="aspect-ratio:4/3; border-radius:18px; margin-bottom:24px; overflow:hidden; background:#F4F8FD; display:flex; align-items:center; justify-content:center;">
+              <img src="juainot/assets/img-04-workforce.png" alt="Workforce" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+            <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#2E9BE6;">Workforce</span>
+            <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:#0B1B3F; margin:10px 0 12px;">Entendé cómo trabaja tu organización</h3>
+            <p style="color:#51708E; font-size:15.5px; margin:0 0 20px;">Herramientas que revelan cuellos de botella, miden la productividad real y muestran dónde mejorar.</p>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Cuellos de botella</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Productividad real</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Mejora continua</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Dinámicas internas</li>
+            </ul>
+          </article>
+        </div>
+
+        <!-- Implementación (placeholder image) -->
+        <div data-reveal data-delay=".1s">
+          <article data-tilt style="position:relative; height:100%; background:#fff; border:1px solid rgba(14,33,80,.10); border-radius:26px; padding:30px; overflow:hidden; box-shadow:0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30); transition:transform .25s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1), border-color .35s; will-change:transform;">
+            <div style="aspect-ratio:4/3; border-radius:18px; margin-bottom:24px; overflow:hidden; background:#F4F8FD; display:flex; align-items:center; justify-content:center;">
+              <img src="juainot/assets/img-05-implementacion.png" alt="Implementación" style="width:100%; height:100%; object-fit:contain;">
+            </div>
+            <span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#2E9BE6;">Implementación</span>
+            <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:22px; color:#0B1B3F; margin:10px 0 12px;">IA integrada, sin cambiar lo que ya tenés</h3>
+            <p style="color:#51708E; font-size:15.5px; margin:0 0 20px;">Conectamos la IA a tus sistemas actuales. Sin migraciones forzadas, sin frenar la operación.</p>
+            <ul style="list-style:none; margin:0; padding:0; display:flex; flex-wrap:wrap; gap:8px;">
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Integración a medida</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Cero downtime</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Retorno medible</li>
+              <li style="font-size:13px; color:#102C6E; background:#E8F2FD; padding:6px 12px; border-radius:100px; font-weight:500;">Soporte continuo</li>
+            </ul>
+          </article>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== DIFERENCIADORES ===================== -->
+  <section id="diferenciadores" style="padding:120px 0; background:#F5F8FC; border-top:1px solid rgba(14,33,80,.06); scroll-margin-top:84px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px;">
+      <div data-reveal style="max-width:680px; margin-bottom:56px;">
+        <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#1C5BC4; display:block; margin-bottom:18px;">Por qué juAInot</span>
+        <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.06; font-size:clamp(32px,4.6vw,52px); color:#0B1B3F; margin:0;">No es IA de moda. Es IA que paga.</h2>
+      </div>
+      <div data-reveal data-difgrid style="display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:rgba(14,33,80,.10); border:1px solid rgba(14,33,80,.10); border-radius:24px; overflow:hidden;">
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">01</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Negocio, no tecnología</h3><p style="font-size:14.5px; color:#51708E; margin:0;">Vendemos soluciones a problemas reales, no herramientas de moda.</p></div>
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">02</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Diagnóstico gratuito</h3><p style="font-size:14.5px; color:#51708E; margin:0;">Tu puerta de entrada: primero medimos, después proponemos.</p></div>
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">03</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Enfoque en ROI</h3><p style="font-size:14.5px; color:#51708E; margin:0;">Cada propuesta llega con retorno proyectado y ahorro calculado.</p></div>
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">04</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Sin cambiar tu infraestructura</h3><p style="font-size:14.5px; color:#51708E; margin:0;">La IA se integra a lo que ya usás, sin reemplazar tus sistemas.</p></div>
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">05</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Funciona 24/7</h3><p style="font-size:14.5px; color:#51708E; margin:0;">Soluciones que operan sin descanso y soporte para escalar.</p></div>
+        <div style="background:#fff; padding:36px 32px; transition:background .35s;" style-hover="background:#FBFDFF;"><span style="font-family:'Space Mono',monospace; font-size:12px; color:#2E9BE6; letter-spacing:.1em;">06</span><h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:19px; color:#0B1B3F; margin:14px 0 8px;">Equipo IA en la región</h3><p style="font-size:14.5px; color:#51708E; margin:0;">Desarrollo propio en Costa Rica y Latinoamérica, cerca de tu negocio.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ASSESSMENT CTA ===================== -->
+  <section style="position:relative; overflow:hidden; background:linear-gradient(135deg,#0A1B43,#06122E); color:#fff; text-align:center; padding:130px 0;">
+    <div style="position:absolute; inset:0; background:radial-gradient(70% 120% at 50% -10%, rgba(79,184,245,.28), transparent 60%); pointer-events:none;"></div>
+    <div data-reveal style="position:relative; max-width:760px; margin:0 auto; padding:0 28px;">
+      <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#4FB8F5;">Oferta inicial</span>
+      <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.04; font-size:clamp(34px,5.4vw,62px); margin:20px 0; color:#fff;">¿Cuánto está perdiendo<br>tu empresa hoy?</h2>
+      <p style="font-size:18px; color:rgba(232,242,253,.82); margin:0 0 36px;">Visitamos tu empresa, analizamos los procesos y entregamos un diagnóstico con el ahorro proyectado. Gratis y sin compromiso.</p>
+      <div style="display:flex; flex-wrap:wrap; justify-content:center; gap:10px; margin-bottom:40px;">
+        <span style="font-size:13.5px; font-family:'Space Mono',monospace; color:rgba(232,242,253,.85); border:1px solid rgba(255,255,255,.18); padding:7px 14px; border-radius:100px;">Diagnóstico completo</span>
+        <span style="font-size:13.5px; font-family:'Space Mono',monospace; color:rgba(232,242,253,.85); border:1px solid rgba(255,255,255,.18); padding:7px 14px; border-radius:100px;">Ahorro calculado</span>
+        <span style="font-size:13.5px; font-family:'Space Mono',monospace; color:rgba(232,242,253,.85); border:1px solid rgba(255,255,255,.18); padding:7px 14px; border-radius:100px;">Hoja de ruta lista</span>
+        <span style="font-size:13.5px; font-family:'Space Mono',monospace; color:rgba(232,242,253,.85); border:1px solid rgba(255,255,255,.18); padding:7px 14px; border-radius:100px;">Sin compromiso</span>
+      </div>
+      <a href="#contacto" style="font-family:'Sora',sans-serif; font-weight:600; font-size:15px; display:inline-flex; align-items:center; gap:9px; padding:16px 30px; border-radius:100px; color:#fff; text-decoration:none; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); box-shadow:0 1px 2px rgba(28,91,196,.25), 0 16px 34px -10px rgba(46,155,230,.6), inset 0 1px 1px rgba(255,255,255,.35); transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-2px); box-shadow:0 1px 2px rgba(28,91,196,.3), 0 22px 42px -10px rgba(46,155,230,.75), inset 0 1px 1px rgba(255,255,255,.4);">
+        Quiero mi diagnóstico gratuito
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
       </a>
-      <p class="footer-tagline">IA Aplicada a Resultados Empresariales</p>
     </div>
-    <div class="footer-cols">
-      <div class="footer-col">
-        <h4>Servicios</h4>
-        <a href="#lineas">Assessment</a>
-        <a href="#lineas">Customer Experience</a>
-        <a href="#lineas">Operations</a>
-        <a href="#lineas">Workforce</a>
+  </section>
+
+  <!-- ===================== CONTACTO ===================== -->
+  <section id="contacto" style="padding:120px 0; scroll-margin-top:84px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px; display:grid; grid-template-columns:.9fr 1.1fr; gap:56px; align-items:start;" data-contactgrid>
+      <div data-reveal>
+        <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#1C5BC4;">Hablemos</span>
+        <h2 style="font-family:'Sora',sans-serif; font-weight:700; letter-spacing:-.02em; line-height:1.06; font-size:clamp(30px,4.4vw,48px); color:#0B1B3F; margin:16px 0 20px;">Empezá con tu diagnóstico gratuito.</h2>
+        <p style="color:#51708E; font-size:17px; margin:0 0 34px; max-width:400px;">Dejanos tus datos y agendamos la visita. Sin compromiso y con respuesta rápida.</p>
+        <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column;">
+          <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-top:1px solid rgba(14,33,80,.10); border-bottom:1px solid rgba(14,33,80,.10);">
+            <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
+            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">Correo</span><a href="mailto:Rolando@juainot.com" style="font-weight:600; color:#0B1B3F; font-size:15.5px; text-decoration:none;">Rolando@juainot.com</a></span>
+          </li>
+          <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(14,33,80,.10);">
+            <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1 3.7 2 2 0 0 1 3 1.5h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L7 11a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2Z"/></svg></span>
+            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">WhatsApp</span><a href="https://wa.me/50688754240" style="font-weight:600; color:#0B1B3F; font-size:15.5px; text-decoration:none;">+506 8875 4240</a></span>
+          </li>
+          <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(14,33,80,.10);">
+            <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M16 2v4M8 2v4M3 10h18"/></svg></span>
+            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">Agendá una llamada</span><a href="https://calendly.com/juainot" target="_blank" rel="noopener" style="font-weight:600; color:#0B1B3F; font-size:15.5px; text-decoration:none;">calendly.com/juainot</a></span>
+          </li>
+          <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(14,33,80,.10);">
+            <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg></span>
+            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">Ubicación</span><span style="font-weight:600; color:#0B1B3F; font-size:15.5px;">Costa Rica · Latinoamérica</span></span>
+          </li>
+        </ul>
+        <p style="margin-top:24px; font-family:'Space Mono',monospace; font-size:12px; color:#51708E;">Razón social: 3-102-937092 SRL</p>
       </div>
-      <div class="footer-col">
-        <h4>Empresa</h4>
-        <a href="#solucion">Cómo funciona</a>
-        <a href="#assessment">Assessment gratis</a>
-        <a href="#contacto">Contacto</a>
-      </div>
-      <div class="footer-col">
-        <h4>Contacto</h4>
-        <a href="mailto:Rolando@juainot.com">Rolando@juainot.com</a>
-        <a href="https://wa.me/50688754240">+506 8875 4240</a>
-        <a href="https://juainot.com">juainot.com</a>
+
+      <div data-reveal data-delay=".1s">
+        <div style="position:relative; overflow:hidden; background:linear-gradient(160deg,#0B1B3F,#0A1B43); border:1px solid rgba(255,255,255,.08); border-radius:26px; padding:44px; box-shadow:0 1px 2px rgba(11,27,63,.05), 0 30px 60px -30px rgba(11,27,63,.6);">
+          <div style="position:absolute; inset:0; background:radial-gradient(90% 80% at 100% 0%, rgba(79,184,245,.18), transparent 55%); pointer-events:none;"></div>
+          <div style="position:relative;">
+            <span style="display:inline-flex; align-items:center; gap:7px; font-family:'Space Mono',monospace; font-size:11px; font-weight:700; letter-spacing:.08em; text-transform:uppercase; color:#fff; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); padding:6px 12px; border-radius:100px; margin-bottom:20px;">● Diagnóstico gratuito</span>
+            <h3 style="font-family:'Sora',sans-serif; font-weight:700; font-size:26px; color:#fff; margin:0 0 12px;">Contanos sobre tu empresa</h3>
+            <p style="color:rgba(232,242,253,.78); font-size:15.5px; margin:0 0 26px; max-width:440px;">Un formulario corto para entender tu operación: a qué se dedica tu empresa, su tamaño y los procesos que más tiempo consumen. Con eso preparamos tu diagnóstico.</p>
+            <ul style="list-style:none; margin:0 0 30px; padding:0; display:flex; flex-direction:column; gap:14px;">
+              <li style="display:flex; align-items:center; gap:12px; color:rgba(232,242,253,.9); font-size:15px;"><span style="width:24px; height:24px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; background:rgba(79,184,245,.16); color:#4FB8F5;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Giro y tamaño de tu empresa</li>
+              <li style="display:flex; align-items:center; gap:12px; color:rgba(232,242,253,.9); font-size:15px;"><span style="width:24px; height:24px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; background:rgba(79,184,245,.16); color:#4FB8F5;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Procesos que querés optimizar</li>
+              <li style="display:flex; align-items:center; gap:12px; color:rgba(232,242,253,.9); font-size:15px;"><span style="width:24px; height:24px; border-radius:50%; flex:none; display:flex; align-items:center; justify-content:center; background:rgba(79,184,245,.16); color:#4FB8F5;"><svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg></span>Cómo contactarte para la visita</li>
+            </ul>
+            <a data-form-url href="https://form.jotform.com/" target="_blank" rel="noopener" style="font-family:'Sora',sans-serif; font-weight:600; font-size:16px; display:inline-flex; align-items:center; justify-content:center; gap:10px; width:100%; padding:18px 28px; border-radius:14px; color:#fff; text-decoration:none; background:linear-gradient(120deg,#1C5BC4,#2E9BE6 55%,#4FB8F5); box-shadow:0 1px 2px rgba(28,91,196,.3), 0 18px 36px -12px rgba(46,155,230,.7), inset 0 1px 1px rgba(255,255,255,.35); transition:transform .35s cubic-bezier(.16,1,.3,1), box-shadow .35s cubic-bezier(.16,1,.3,1);" style-hover="transform:translateY(-2px); box-shadow:0 1px 2px rgba(28,91,196,.35), 0 24px 44px -12px rgba(46,155,230,.85), inset 0 1px 1px rgba(255,255,255,.4);">
+              Completar el formulario
+              <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+            </a>
+            <p style="margin:16px 0 0; text-align:center; font-size:13px; color:rgba(232,242,253,.6);">Toma menos de 2 minutos · Respuesta en 24 h</p>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-  <div class="footer-bottom">
-    <p class="footer-legal">© 2025 juAInot · 3-102-937092 SRL · Costa Rica</p>
-    <p class="footer-tagline-bottom">¿Por qué no hacerlo ya?</p>
-  </div>
-</footer>
+  </section>
 
-<!-- WA FLOAT -->
-<a href="https://wa.me/50688754240" target="_blank" class="wa-btn" title="WhatsApp">💬</a>
+  <!-- ===================== FOOTER ===================== -->
+  <footer style="background:#0B1B3F; color:rgba(255,255,255,.75); padding:64px 0 30px;">
+    <div style="max-width:1180px; margin:0 auto; padding:0 28px;">
+      <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1);">
+        <div>
+          <a href="#top" style="display:flex; align-items:center; gap:11px; font-family:'Sora',sans-serif; font-weight:700; font-size:21px; color:#fff; text-decoration:none; margin-bottom:14px;"><span style="width:13px; height:13px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#4FB8F5,#1C5BC4); box-shadow:0 0 14px #4FB8F5; flex:none;"></span><span>ju<b style="font-weight:800;">AI</b>not</span></a>
+          <p style="font-size:14.5px; max-width:300px; color:rgba(255,255,255,.6); margin:0;">Convertimos la Inteligencia Artificial en resultados empresariales reales. Innovación tecnológica para Costa Rica y Latinoamérica.</p>
+        </div>
+        <div style="display:flex; gap:64px; flex-wrap:wrap;">
+          <div>
+            <h5 style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#4FB8F5; margin:0 0 16px;">Servicios</h5>
+            <a href="#servicios" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Assessment</a>
+            <a href="#servicios" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Customer Experience</a>
+            <a href="#servicios" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Operations</a>
+            <a href="#servicios" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Workforce</a>
+          </div>
+          <div>
+            <h5 style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#4FB8F5; margin:0 0 16px;">Empresa</h5>
+            <a href="#problema" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">El reto</a>
+            <a href="#metodologia" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Metodología</a>
+            <a href="#diferenciadores" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Por qué juAInot</a>
+            <a href="#contacto" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Contacto</a>
+          </div>
+          <div>
+            <h5 style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#4FB8F5; margin:0 0 16px;">Contacto</h5>
+            <a href="mailto:Rolando@juainot.com" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Rolando@juainot.com</a>
+            <a href="https://wa.me/50688754240" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">+506 8875 4240</a>
+            <a href="https://calendly.com/juainot" target="_blank" rel="noopener" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">calendly.com/juainot</a>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex; justify-content:space-between; align-items:center; margin-top:28px; font-size:13px; color:rgba(255,255,255,.5); flex-wrap:wrap; gap:10px;">
+        <span>© 2026 juAInot · 3-102-937092 SRL</span>
+        <span>Costa Rica · Latinoamérica</span>
+      </div>
+    </div>
+  </footer>
 
-<script>
-// Scroll reveal
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add('on');
-      const kids = Array.from(e.target.children);
-      kids.forEach((k, i) => k.style.transitionDelay = (i * 0.07) + 's');
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script>
+class Component extends DCLogic {
+  constructor(props){
+    super(props);
+    this.rootRef = React.createRef();
+    this._cleanup = [];
+  }
+
+  renderVals(){
+    return { root: this.rootRef };
+  }
+
+  componentDidMount(){
+    const root = this.rootRef.current;
+    if(!root) return;
+    const reduce = window.matchMedia('(prefers-reduced-motion:reduce)').matches;
+    const on = (el, ev, fn, opts) => { el.addEventListener(ev, fn, opts); this._cleanup.push(()=>el.removeEventListener(ev, fn, opts)); };
+
+    /* ---------- NAV scrolled state ---------- */
+    const nav = root.querySelector('[data-nav]');
+    const brand = root.querySelector('[data-brand]');
+    const navlinks = [...root.querySelectorAll('[data-navlink]')];
+    const toggleBtn = root.querySelector('[data-mobile-toggle]');
+    const applyNav = () => {
+      const s = window.scrollY > 40;
+      if(s){
+        nav.style.background = 'rgba(255,255,255,.82)';
+        nav.style.backdropFilter = 'blur(14px) saturate(140%)';
+        nav.style.webkitBackdropFilter = 'blur(14px) saturate(140%)';
+        nav.style.boxShadow = '0 1px 0 rgba(14,33,80,.06)';
+        nav.style.padding = '12px 28px';
+        brand.style.color = '#0B1B3F';
+        navlinks.forEach(a=>a.style.color = '#51708E');
+        if(toggleBtn) toggleBtn.style.color = '#0B1B3F';
+      } else {
+        nav.style.background = 'transparent';
+        nav.style.backdropFilter = 'none';
+        nav.style.webkitBackdropFilter = 'none';
+        nav.style.boxShadow = 'none';
+        nav.style.padding = '18px 28px';
+        brand.style.color = '#fff';
+        navlinks.forEach(a=>a.style.color = 'rgba(255,255,255,.82)');
+        if(toggleBtn) toggleBtn.style.color = '#fff';
+      }
+    };
+    applyNav();
+    on(window, 'scroll', applyNav, {passive:true});
+
+    /* ---------- Mobile menu ---------- */
+    const menu = root.querySelector('[data-mobile-menu]');
+    const setMenu = (open) => { menu.style.display = open ? 'flex' : 'none'; document.body.style.overflow = open ? 'hidden' : ''; };
+    if(toggleBtn) on(toggleBtn, 'click', ()=> setMenu(menu.style.display !== 'flex'));
+    root.querySelectorAll('[data-mlink]').forEach(a=> on(a, 'click', ()=> setMenu(false)));
+
+    /* ---------- Responsive: show/hide nav links & toggle ---------- */
+    const navlinksWrap = root.querySelector('[data-navlinks]');
+    const applyResponsive = () => {
+      const mobile = window.innerWidth <= 900;
+      navlinksWrap.style.display = mobile ? 'none' : 'flex';
+      if(toggleBtn) toggleBtn.style.display = mobile ? 'block' : 'none';
+      if(!mobile) setMenu(false);
+      // grids
+      const set = (sel, cols) => { const el = root.querySelector(sel); if(el) el.style.gridTemplateColumns = cols; };
+      set('[data-retogrid]', mobile ? '1fr' : '1.1fr .9fr');
+      set('[data-servgrid]', mobile ? '1fr' : 'repeat(2,1fr)');
+      set('[data-difgrid]', mobile ? '1fr' : 'repeat(3,1fr)');
+      set('[data-contactgrid]', mobile ? '1fr' : '.9fr 1.1fr');
+      // featured + cards inner layout
+      root.querySelectorAll('[data-tilt]').forEach(c=>{
+        if(c.style.gridTemplateColumns) c.style.gridTemplateColumns = mobile ? '1fr' : '1fr 1fr';
+      });
+    };
+    applyResponsive();
+    on(window, 'resize', applyResponsive, {passive:true});
+
+    /* ---------- Scroll reveal ---------- */
+    if(!reduce){
+      const reveals = [...root.querySelectorAll('[data-reveal]')];
+      reveals.forEach(el=>{
+        el.style.opacity = '0';
+        el.style.transform = 'translateY(34px)';
+        el.style.transition = 'opacity .9s cubic-bezier(.16,1,.3,1), transform .9s cubic-bezier(.16,1,.3,1)';
+        if(el.dataset.delay) el.style.transitionDelay = el.dataset.delay;
+      });
+      const io = new IntersectionObserver((entries)=>{
+        entries.forEach(e=>{ if(e.isIntersecting){ e.target.style.opacity='1'; e.target.style.transform='none'; io.unobserve(e.target); } });
+      }, { threshold:.14, rootMargin:'0px 0px -8% 0px' });
+      reveals.forEach(el=>io.observe(el));
+      this._cleanup.push(()=>io.disconnect());
+      // failsafe
+      const t = setTimeout(()=> reveals.forEach(el=>{ el.style.opacity='1'; el.style.transform='none'; }), 3500);
+      this._cleanup.push(()=>clearTimeout(t));
     }
-  });
-}, { threshold: 0.08 });
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
 
-// Form
-function handleForm(e) {
-  e.preventDefault();
-  const btn = e.target.querySelector('.form-submit');
-  btn.textContent = 'Enviando...';
-  setTimeout(() => {
-    btn.textContent = '✓ ¡Mensaje enviado!';
-    btn.style.background = '#1B998B';
-    e.target.reset();
-    setTimeout(() => { btn.textContent = 'Enviar mensaje →'; btn.style.background = ''; }, 3000);
-  }, 1200);
+    /* ---------- Marquee duplicate ---------- */
+    const marquee = root.querySelector('[data-marquee]');
+    if(marquee) marquee.innerHTML += marquee.innerHTML;
+
+    /* ---------- Tilt 3D service cards ---------- */
+    if(!reduce){
+      root.querySelectorAll('[data-tilt]').forEach(card=>{
+        on(card, 'mousemove', (e)=>{
+          const r = card.getBoundingClientRect();
+          const px = (e.clientX - r.left)/r.width - .5;
+          const py = (e.clientY - r.top)/r.height - .5;
+          card.style.transform = `perspective(1000px) rotateY(${px*4.5}deg) rotateX(${-py*4.5}deg) translateY(-4px)`;
+          card.style.boxShadow = '0 1px 2px rgba(11,27,63,.05), 0 28px 56px -26px rgba(11,27,63,.5)';
+          card.style.borderColor = 'rgba(46,155,230,.35)';
+        });
+        on(card, 'mouseleave', ()=>{
+          card.style.transform = '';
+          card.style.boxShadow = '0 1px 2px rgba(11,27,63,.04), 0 10px 30px -18px rgba(11,27,63,.30)';
+          card.style.borderColor = 'rgba(14,33,80,.10)';
+        });
+      });
+    }
+
+    /* ---------- Sticky stack depth effect ---------- */
+    if(!reduce){
+      const cards = [...root.querySelectorAll('[data-stack-card]')];
+      const stackFx = () => {
+        cards.forEach((card, i)=>{
+          const next = cards[i+1];
+          if(!next){ card.style.transform=''; card.style.filter=''; return; }
+          const cr = card.getBoundingClientRect();
+          const nr = next.getBoundingClientRect();
+          const overlap = Math.min(1, Math.max(0, (cr.bottom - nr.top) / cr.height));
+          card.style.transformOrigin = 'center top';
+          card.style.transform = `scale(${1 - overlap*0.055}) translateY(${overlap*-6}px)`;
+          card.style.filter = `brightness(${1 - overlap*0.28})`;
+        });
+      };
+      stackFx();
+      on(window, 'scroll', stackFx, {passive:true});
+      on(window, 'resize', stackFx, {passive:true});
+    }
+
+    /* ---------- Hero parallax ---------- */
+    if(!reduce){
+      const heroContent = root.querySelector('[data-hero-content]');
+      const heroBg = root.querySelector('[data-hero-bg]');
+      const onPar = () => {
+        const y = window.scrollY;
+        const vh = window.innerHeight;
+        if(y < vh){
+          if(heroContent){ heroContent.style.transform = `translateY(${y*0.16}px)`; heroContent.style.opacity = `${Math.max(0, 1 - y/(vh*0.85))}`; }
+          if(heroBg){ heroBg.style.transform = `scale(1.06) translateY(${y*0.08}px)`; }
+        }
+      };
+      on(window, 'scroll', onPar, {passive:true});
+    }
+
+    /* ---------- HERO interactive neural constellation ---------- */
+    this.initConstellation(root, reduce, on);
+  }
+
+  initConstellation(root, reduce, on){
+    const canvas = root.querySelector('[data-node-canvas]');
+    const hero = root.querySelector('[data-hero]');
+    if(!canvas || !hero) return;
+    const ctx = canvas.getContext('2d');
+    let w = 0, h = 0, dpr = 1, nodes = [], pulses = [], ripples = [], raf = 0;
+    const mouse = { x: -9999, y: -9999, active: false };
+
+    const LINK = 140;       // node-node link distance
+    const MLINK = 320;      // mouse influence radius
+
+    const spawnPulse = () => {
+      if(nodes.length < 2) return { i:0, j:0, t:0, sp:0.005 };
+      const i = (Math.random()*nodes.length)|0;
+      let best = -1, bd = 1e9;
+      for(let k=0;k<nodes.length;k++){
+        if(k===i) continue;
+        const dx = nodes[i].x-nodes[k].x, dy = nodes[i].y-nodes[k].y;
+        const d = dx*dx+dy*dy;
+        if(d < bd && d > 200){ bd = d; best = k; }
+      }
+      if(best < 0) best = (i+1)%nodes.length;
+      return { i, j: best, t: Math.random()*0.4, sp: 0.004 + Math.random()*0.006 };
+    };
+
+    const resize = () => {
+      dpr = Math.min(window.devicePixelRatio || 1, 2);
+      w = hero.offsetWidth; h = hero.offsetHeight;
+      canvas.width = w*dpr; canvas.height = h*dpr;
+      canvas.style.width = w+'px'; canvas.style.height = h+'px';
+      ctx.setTransform(dpr,0,0,dpr,0,0);
+      const count = Math.max(36, Math.min(96, Math.floor(w*h/13000)));
+      nodes = Array.from({length:count}, ()=>({
+        x: Math.random()*w, y: Math.random()*h,
+        vx: (Math.random()-.5)*0.28, vy: (Math.random()-.5)*0.28,
+        r: Math.random()*1.7 + 0.7,
+        z: Math.random()*0.7 + 0.45,
+        pulse: Math.random()*Math.PI*2
+      }));
+      pulses = Array.from({length: Math.max(8, Math.floor(count/7))}, spawnPulse);
+    };
+    resize();
+    on(window, 'resize', resize, {passive:true});
+
+    on(hero, 'mousemove', (e)=>{
+      const r = hero.getBoundingClientRect();
+      mouse.x = e.clientX - r.left; mouse.y = e.clientY - r.top; mouse.active = true;
+    });
+    on(hero, 'mouseleave', ()=>{ mouse.active = false; mouse.x = -9999; mouse.y = -9999; });
+    on(hero, 'click', (e)=>{
+      const r = hero.getBoundingClientRect();
+      ripples.push({ x: e.clientX - r.left, y: e.clientY - r.top, t: 0 });
+    });
+    // touch support
+    on(hero, 'touchmove', (e)=>{
+      if(!e.touches[0]) return;
+      const r = hero.getBoundingClientRect();
+      mouse.x = e.touches[0].clientX - r.left; mouse.y = e.touches[0].clientY - r.top; mouse.active = true;
+    }, {passive:true});
+    on(hero, 'touchend', ()=>{ mouse.active = false; mouse.x = -9999; mouse.y = -9999; });
+
+    const draw = (animate) => {
+      ctx.clearRect(0,0,w,h);
+
+      // update positions
+      for(let i=0;i<nodes.length;i++){
+        const a = nodes[i];
+        if(animate){
+          a.x += a.vx*a.z; a.y += a.vy*a.z;
+          a.pulse += 0.03;
+          if(a.x < -30) a.x = w+30; if(a.x > w+30) a.x = -30;
+          if(a.y < -30) a.y = h+30; if(a.y > h+30) a.y = -30;
+
+          if(mouse.active){
+            const dx = mouse.x - a.x, dy = mouse.y - a.y;
+            const d = Math.hypot(dx, dy);
+            if(d < MLINK && d > 0.001){
+              if(d < 105){ // repulse close — visibly parts around the cursor
+                const f = (1 - d/105) * 2.4;
+                a.x -= (dx/d) * f; a.y -= (dy/d) * f;
+              } else { // attract toward the cursor
+                const f = (1 - d/MLINK) * 0.14;
+                a.x += dx * f * 0.06; a.y += dy * f * 0.06;
+              }
+            }
+          }
+          // ripple push
+          for(const rp of ripples){
+            const dx = a.x - rp.x, dy = a.y - rp.y, d = Math.hypot(dx,dy);
+            const radius = rp.t * 520;
+            if(Math.abs(d - radius) < 60 && d > 0.001){
+              const f = (1 - Math.abs(d - radius)/60) * (1 - rp.t) * 2.2;
+              a.x += (dx/d) * f; a.y += (dy/d) * f;
+            }
+          }
+        }
+      }
+
+      // node-node links
+      for(let i=0;i<nodes.length;i++){
+        const a = nodes[i];
+        for(let j=i+1;j<nodes.length;j++){
+          const b = nodes[j];
+          const dx = a.x-b.x, dy = a.y-b.y;
+          const d = Math.hypot(dx, dy);
+          if(d < LINK){
+            const al = (1 - d/LINK);
+            // brighten links near the cursor
+            let boost = 0;
+            if(mouse.active){
+              const mx = (a.x+b.x)/2 - mouse.x, my = (a.y+b.y)/2 - mouse.y;
+              const md = Math.hypot(mx, my);
+              if(md < MLINK) boost = (1 - md/MLINK) * 0.5;
+            }
+            ctx.globalAlpha = al * (0.26 + boost);
+            ctx.strokeStyle = boost > 0.12 ? '#7fd0ff' : '#4FB8F5';
+            ctx.lineWidth = 0.6 + boost;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(b.x, b.y); ctx.stroke();
+          }
+        }
+        // mouse links
+        if(mouse.active){
+          const dx = a.x - mouse.x, dy = a.y - mouse.y;
+          const md = Math.hypot(dx, dy);
+          if(md < MLINK){
+            const t = 1 - md/MLINK;
+            ctx.globalAlpha = t * 0.9;
+            ctx.strokeStyle = '#9fdcff';
+            ctx.lineWidth = 0.8 + t * 1.6;
+            ctx.beginPath(); ctx.moveTo(a.x, a.y); ctx.lineTo(mouse.x, mouse.y); ctx.stroke();
+          }
+        }
+      }
+
+      // travelling data pulses
+      ctx.globalCompositeOperation = 'lighter';
+      for(let p=0;p<pulses.length;p++){
+        const pu = pulses[p];
+        if(animate){ pu.t += pu.sp; if(pu.t >= 1){ pulses[p] = spawnPulse(); continue; } }
+        const a = nodes[pu.i], b = nodes[pu.j];
+        if(!a || !b) { pulses[p] = spawnPulse(); continue; }
+        const x = a.x + (b.x-a.x)*pu.t, y = a.y + (b.y-a.y)*pu.t;
+        const g = ctx.createRadialGradient(x,y,0,x,y,7);
+        g.addColorStop(0, 'rgba(159,220,255,.95)');
+        g.addColorStop(1, 'rgba(79,184,245,0)');
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = g;
+        ctx.beginPath(); ctx.arc(x,y,7,0,Math.PI*2); ctx.fill();
+      }
+
+      // nodes with bloom
+      for(const n of nodes){
+        let glow = 1, rr = n.r;
+        if(mouse.active){
+          const md = Math.hypot(n.x - mouse.x, n.y - mouse.y);
+          if(md < MLINK){ const f = 1 - md/MLINK; glow = 1 + f*2.8; rr = n.r * (1 + f*1.7); }
+        }
+        const tw = animate ? (0.75 + Math.sin(n.pulse)*0.25) : 1;
+        // halo
+        const hg = ctx.createRadialGradient(n.x,n.y,0,n.x,n.y,rr*5);
+        hg.addColorStop(0, `rgba(79,184,245,${0.22*glow*tw})`);
+        hg.addColorStop(1, 'rgba(79,184,245,0)');
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = hg;
+        ctx.beginPath(); ctx.arc(n.x, n.y, rr*5, 0, Math.PI*2); ctx.fill();
+        // core
+        ctx.fillStyle = `rgba(${glow>1.2?200:159},${glow>1.2?235:220},255,${0.9*tw})`;
+        ctx.beginPath(); ctx.arc(n.x, n.y, rr, 0, Math.PI*2); ctx.fill();
+      }
+
+      // glowing cursor orb + pulsing halo (composite still 'lighter')
+      if(mouse.active){
+        const cr = 30;
+        const cg = ctx.createRadialGradient(mouse.x, mouse.y, 0, mouse.x, mouse.y, cr);
+        cg.addColorStop(0, 'rgba(180,228,255,.95)');
+        cg.addColorStop(0.35, 'rgba(79,184,245,.5)');
+        cg.addColorStop(1, 'rgba(79,184,245,0)');
+        ctx.globalAlpha = 1;
+        ctx.fillStyle = cg;
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, cr, 0, Math.PI*2); ctx.fill();
+        // bright core
+        ctx.fillStyle = 'rgba(225,242,255,.98)';
+        ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 3.4, 0, Math.PI*2); ctx.fill();
+        // two pulsing rings
+        const now = performance.now();
+        for(let k=0;k<2;k++){
+          const ph = ((now/900) + k*0.5) % 1;
+          ctx.globalAlpha = (1 - ph) * 0.5;
+          ctx.strokeStyle = '#7fd0ff';
+          ctx.lineWidth = 1.4;
+          ctx.beginPath(); ctx.arc(mouse.x, mouse.y, 14 + ph*60, 0, Math.PI*2); ctx.stroke();
+        }
+      }
+
+      // ripple rings
+      for(let i=ripples.length-1;i>=0;i--){
+        const rp = ripples[i];
+        if(animate) rp.t += 0.014;
+        const radius = rp.t * 520;
+        ctx.globalAlpha = Math.max(0, (1 - rp.t)) * 0.4;
+        ctx.strokeStyle = '#7fd0ff';
+        ctx.lineWidth = 1.4;
+        ctx.beginPath(); ctx.arc(rp.x, rp.y, radius, 0, Math.PI*2); ctx.stroke();
+        if(rp.t >= 1) ripples.splice(i,1);
+      }
+
+      ctx.globalCompositeOperation = 'source-over';
+      ctx.globalAlpha = 1;
+    };
+
+    if(reduce){
+      draw(false);
+      return;
+    }
+    const tick = () => { draw(true); raf = requestAnimationFrame(tick); };
+    tick();
+    this._cleanup.push(()=> cancelAnimationFrame(raf));
+  }
+
+  componentWillUnmount(){
+    (this._cleanup || []).forEach(fn=>{ try{ fn(); }catch(e){} });
+    document.body.style.overflow = '';
+  }
 }
-
-// Active nav
-const sections = document.querySelectorAll('section[id]');
-const links = document.querySelectorAll('.nav-links a');
-window.addEventListener('scroll', () => {
-  let cur = '';
-  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
-  links.forEach(a => { a.style.color = a.getAttribute('href') === '#'+cur ? 'white' : ''; });
-}, { passive: true });
 </script>
 </body>
 </html>
