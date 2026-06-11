@@ -29,9 +29,11 @@
 
   <!-- ===================== NAV ===================== -->
   <nav data-nav style="position:fixed; top:0; left:0; right:0; z-index:100; display:flex; align-items:center; justify-content:space-between; padding:18px 28px; transition:background .4s, box-shadow .4s, padding .4s;">
-    <a href="#top" data-brand style="display:flex; align-items:center; gap:11px; font-family:'Sora',sans-serif; font-weight:700; font-size:21px; letter-spacing:-.02em; color:#fff; text-decoration:none; transition:color .4s;">
-      <span style="width:13px; height:13px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#4FB8F5,#1C5BC4); box-shadow:0 0 14px #4FB8F5; flex:none;"></span>
-      <span>ju<b style="font-weight:800;">AI</b>not</span>
+    <a href="#top" data-brand aria-label="juAInot · inicio" style="display:flex; align-items:center; text-decoration:none;">
+      <span style="position:relative; display:inline-block; height:38px;">
+        <img data-logo-white src="juainot/assets/logo-blanco-crop.png" alt="juAInot" style="height:38px; width:auto; display:block; transition:opacity .4s;">
+        <img data-logo-blue src="juainot/assets/logo-azul-crop.png" alt="juAInot" style="height:38px; width:auto; display:block; position:absolute; top:0; left:0; opacity:0; transition:opacity .4s;">
+      </span>
     </a>
     <div data-navlinks style="display:flex; align-items:center; gap:30px;">
       <a href="#problema" data-navlink style="font-size:14.5px; font-weight:500; color:rgba(255,255,255,.82); text-decoration:none; transition:color .3s;" style-hover="color:#4FB8F5;">El reto</a>
@@ -66,7 +68,7 @@
         <div style="max-width:780px; pointer-events:auto;">
           <span style="font-family:'Space Mono',monospace; font-size:12px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color:#4FB8F5; margin-bottom:24px; display:inline-flex; align-items:center; gap:10px;">
             <span style="width:7px; height:7px; border-radius:50%; background:#4FB8F5; box-shadow:0 0 10px #4FB8F5; animation:juPulse 2.4s ease-in-out infinite;"></span>
-            Inteligencia Artificial aplicada · Costa Rica &amp; Latinoamérica
+            Inteligencia Artificial aplicada
           </span>
           <h1 style="font-family:'Sora',sans-serif; font-weight:700; line-height:1.04; letter-spacing:-.02em; font-size:clamp(38px,5.6vw,70px); color:#fff; margin:0 0 24px;">Convertimos la <span style="background:linear-gradient(110deg,#7fd0ff,#4FB8F5 50%,#2E9BE6); -webkit-background-clip:text; background-clip:text; color:transparent;">Inteligencia Artificial</span> en resultados empresariales reales.</h1>
           <p style="font-size:clamp(17px,2vw,20px); color:rgba(232,242,253,.86); max-width:580px; margin:0 0 38px; font-weight:400;">No vendemos tecnología: resolvemos problemas de negocio. Identificamos dónde la IA genera valor, la implementamos a la medida y la mantenemos funcionando.</p>
@@ -325,7 +327,7 @@
         <ul style="list-style:none; margin:0; padding:0; display:flex; flex-direction:column;">
           <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-top:1px solid rgba(14,33,80,.10); border-bottom:1px solid rgba(14,33,80,.10);">
             <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></span>
-            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">Correo</span><a href="mailto:Rolando@juainot.com" style="font-weight:600; color:#0B1B3F; font-size:15.5px; text-decoration:none;">Rolando@juainot.com</a></span>
+            <span><span style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.1em; text-transform:uppercase; color:#51708E; display:block;">Correo</span><a href="/cdn-cgi/l/email-protection#04566b68656a606b446e71656d6a6b702a676b69" style="font-weight:600; color:#0B1B3F; font-size:15.5px; text-decoration:none;"><span class="__cf_email__" data-cfemail="45172a29242b212a052f30242c2b2a316b262a28">[email&#160;protected]</span></a></span>
           </li>
           <li style="display:flex; gap:16px; align-items:center; padding:16px 0; border-bottom:1px solid rgba(14,33,80,.10);">
             <span style="width:42px; height:42px; border-radius:12px; flex:none; display:flex; align-items:center; justify-content:center; background:#E8F2FD; color:#1C5BC4;"><svg viewBox="0 0 24 24" width="19" height="19" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16.5v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 1 3.7 2 2 0 0 1 3 1.5h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.6a2 2 0 0 1-.5 2.1L7 11a16 16 0 0 0 6 6l1.1-1.1a2 2 0 0 1 2.1-.5c.8.3 1.7.6 2.6.7a2 2 0 0 1 1.7 2Z"/></svg></span>
@@ -371,7 +373,7 @@
     <div style="max-width:1180px; margin:0 auto; padding:0 28px;">
       <div style="display:flex; justify-content:space-between; align-items:flex-start; gap:40px; flex-wrap:wrap; padding-bottom:40px; border-bottom:1px solid rgba(255,255,255,.1);">
         <div>
-          <a href="#top" style="display:flex; align-items:center; gap:11px; font-family:'Sora',sans-serif; font-weight:700; font-size:21px; color:#fff; text-decoration:none; margin-bottom:14px;"><span style="width:13px; height:13px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#4FB8F5,#1C5BC4); box-shadow:0 0 14px #4FB8F5; flex:none;"></span><span>ju<b style="font-weight:800;">AI</b>not</span></a>
+          <a href="#top" aria-label="juAInot · inicio" style="display:inline-block; text-decoration:none; margin-bottom:18px;"><img src="juainot/assets/logo-blanco-crop.png" alt="juAInot" style="height:44px; width:auto; display:block;"></a>
           <p style="font-size:14.5px; max-width:300px; color:rgba(255,255,255,.6); margin:0;">Convertimos la Inteligencia Artificial en resultados empresariales reales. Innovación tecnológica para Costa Rica y Latinoamérica.</p>
         </div>
         <div style="display:flex; gap:64px; flex-wrap:wrap;">
@@ -391,7 +393,7 @@
           </div>
           <div>
             <h5 style="font-family:'Space Mono',monospace; font-size:11px; letter-spacing:.12em; text-transform:uppercase; color:#4FB8F5; margin:0 0 16px;">Contacto</h5>
-            <a href="mailto:Rolando@juainot.com" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">Rolando@juainot.com</a>
+            <a href="/cdn-cgi/l/email-protection#9fcdf0f3fef1fbf0dff5eafef6f1f0ebb1fcf0f2" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;"><span class="__cf_email__" data-cfemail="15477a79747b717a557f60747c7b7a613b767a78">[email&#160;protected]</span></a>
             <a href="https://wa.me/50688754240" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">+506 8875 4240</a>
             <a href="https://calendly.com/juainot" target="_blank" rel="noopener" style="display:block; font-size:14.5px; color:rgba(255,255,255,.75); margin-bottom:10px; text-decoration:none; transition:color .3s;" style-hover="color:#fff;">calendly.com/juainot</a>
           </div>
@@ -406,7 +408,7 @@
 
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script type="text/x-dc" data-dc-script>
 class Component extends DCLogic {
   constructor(props){
     super(props);
@@ -427,6 +429,8 @@ class Component extends DCLogic {
     /* ---------- NAV scrolled state ---------- */
     const nav = root.querySelector('[data-nav]');
     const brand = root.querySelector('[data-brand]');
+    const logoWhite = root.querySelector('[data-logo-white]');
+    const logoBlue = root.querySelector('[data-logo-blue]');
     const navlinks = [...root.querySelectorAll('[data-navlink]')];
     const toggleBtn = root.querySelector('[data-mobile-toggle]');
     const applyNav = () => {
@@ -437,7 +441,8 @@ class Component extends DCLogic {
         nav.style.webkitBackdropFilter = 'blur(14px) saturate(140%)';
         nav.style.boxShadow = '0 1px 0 rgba(14,33,80,.06)';
         nav.style.padding = '12px 28px';
-        brand.style.color = '#0B1B3F';
+        if(logoWhite) logoWhite.style.opacity = '0';
+        if(logoBlue) logoBlue.style.opacity = '1';
         navlinks.forEach(a=>a.style.color = '#51708E');
         if(toggleBtn) toggleBtn.style.color = '#0B1B3F';
       } else {
@@ -446,7 +451,8 @@ class Component extends DCLogic {
         nav.style.webkitBackdropFilter = 'none';
         nav.style.boxShadow = 'none';
         nav.style.padding = '18px 28px';
-        brand.style.color = '#fff';
+        if(logoWhite) logoWhite.style.opacity = '1';
+        if(logoBlue) logoBlue.style.opacity = '0';
         navlinks.forEach(a=>a.style.color = 'rgba(255,255,255,.82)');
         if(toggleBtn) toggleBtn.style.color = '#fff';
       }
